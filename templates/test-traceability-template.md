@@ -12,10 +12,19 @@
 | US1 | User Story | BDD | BDD | BDD-US1-001 | tests/bdd/features/user-stories/[feature].feature | [command] | Planned | [notes] |
 | US1 | User Story | ATDD | ATDD, BDD | ATDD-US1-001 | tests/atdd/features/acceptance/[feature].feature | [command] | Planned | [shared acceptance/behavior evidence] |
 
+## BDD and ATDD Applicability
+
+| User Story | Practice | Decision | N/A Rationale | Alternative Evidence |
+|------------|----------|----------|---------------|----------------------|
+| US1 | BDD | [Required/N/A] | [concrete rationale when N/A] | [TDD/gate artifact IDs] |
+| US1 | ATDD | [Required/N/A] | [concrete rationale when N/A] | [TDD/gate artifact IDs] |
+
 ## Required Checks
 
 - [ ] Every FR has at least one mapped test artifact
-- [ ] Every user story has BDD and ATDD scenario coverage
+- [ ] Every user story records BDD and ATDD as `Required` or justified `N/A`
+- [ ] Every `Required` BDD/ATDD decision has scenario coverage
+- [ ] Every `N/A` decision has a concrete rationale and alternative evidence
 - [ ] Every edge/error case has a mapped negative, BDD, or ATDD test
 - [ ] Every Gherkin scenario has an executable binding
 - [ ] Every executable artifact has exactly one owning suite

@@ -3,11 +3,13 @@
 This preset governs a strict test-first delivery workflow for Spec Kit features:
 
 - **TDD**: failing implementation-level tests before production code, including happy paths, boundaries, edge cases, and expected error sources.
-- **BDD**: Gherkin behavior scenarios with executable mirrored step bindings.
-- **ATDD**: Gherkin acceptance scenarios with executable mirrored acceptance tests.
+- **BDD**: Gherkin behavior scenarios with executable mirrored step bindings when the feature has user-visible behavior or business rules.
+- **ATDD**: Gherkin acceptance scenarios with executable mirrored acceptance tests when the feature has a stakeholder-facing acceptance boundary.
 - **Quality gates**: coverage, linting, formatting, static analysis/type checking, runtime smoke checks, and traceability.
 
 TDD, BDD, and ATDD are complementary development practices, not mutually exclusive test types. Every executable test artifact has one **owning suite** for directory, task, command, and report routing, but it MAY provide evidence for multiple practices or requirements. Equivalent tests MUST NOT be copied between suites merely to satisfy labels.
+
+TDD remains mandatory for production logic. Each user story MUST explicitly mark BDD and ATDD as `Required` or `N/A`. `N/A` is permitted only for technical-only work with no corresponding observable behavior or stakeholder acceptance boundary; it requires a concrete rationale and alternative TDD or quality-gate evidence.
 
 ## Install Locally During Development
 
@@ -51,7 +53,7 @@ tests/
 └── reports/
 ```
 
-Platform-specific conventions are allowed only when suite ownership remains visible. Shared fixtures, helpers, and runner adapters belong under `tests/support/` (or an equivalent shared path) instead of being duplicated across suites.
+Platform-specific conventions are allowed only when suite ownership remains visible. A BDD or ATDD directory is required when that practice has executable artifacts; an entirely non-applicable suite need not create an empty directory. Shared fixtures, helpers, and runner adapters belong under `tests/support/` (or an equivalent shared path) instead of being duplicated across suites.
 
 ## Community Catalog Entry Example
 
@@ -60,7 +62,7 @@ Platform-specific conventions are allowed only when suite ownership remains visi
   "name": "Test-First Governance",
   "id": "test-first-governance",
   "version": "1.0.0",
-  "description": "Governs TDD, BDD, and ATDD with mandatory Gherkin scenarios, explicit suite ownership, traceability, coverage, linting, static analysis, and runtime validation gates.",
+  "description": "Governs TDD with applicable BDD and ATDD Gherkin scenarios, explicit suite ownership, traceability, coverage, linting, static analysis, and runtime validation gates.",
   "author": "Your Name or Organization",
   "repository": "https://github.com/your-org/spec-kit-preset-test-first-governance",
   "download_url": "https://github.com/your-org/spec-kit-preset-test-first-governance/archive/refs/tags/v1.0.0.zip",

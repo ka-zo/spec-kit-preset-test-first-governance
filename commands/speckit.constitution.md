@@ -3,7 +3,7 @@
 Before and after executing the core constitution workflow, ensure the project constitution contains non-negotiable principles for:
 - test-first implementation;
 - explicit suite ownership while treating TDD, BDD, and ATDD as complementary practices;
-- mandatory Gherkin for BDD and ATDD;
+- mandatory Gherkin when BDD or ATDD applies, with governed `N/A` decisions for technical-only work;
 - Gherkin scenario ID to executable test mirroring;
 - coverage, linting, static analysis, runtime smoke, and traceability gates.
 
@@ -12,6 +12,7 @@ If the constitution omits these principles, add them or report a blocking govern
 {CORE_TEMPLATE}
 
 ## Additional Done Criteria
-- [ ] Constitution includes TDD, BDD, and ATDD as mandatory development disciplines
+- [ ] Constitution makes TDD mandatory for production logic and defines BDD/ATDD applicability
+- [ ] Constitution requires concrete rationale and alternative evidence for BDD/ATDD `N/A`
 - [ ] Constitution requires one owning suite per executable artifact and prohibits label-driven duplication
 - [ ] Constitution states that quality gates are mandatory and blocking

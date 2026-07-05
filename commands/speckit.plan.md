@@ -10,6 +10,7 @@ The implementation plan MUST include:
 - expected report paths;
 - red-green-refactor execution model for every user story;
 - traceability mechanism from FR/SC/US/EC IDs to test and scenario IDs.
+- BDD and ATDD applicability decisions, including rationale and alternative evidence for every `N/A`.
 
 ## Tool Selection Guidance
 Choose stack-native tools. Examples:
@@ -24,7 +25,8 @@ Choose stack-native tools. Examples:
 ## Additional Planning Gate
 Before completing the plan, verify:
 - [ ] The plan makes tests mandatory, not optional
-- [ ] BDD and ATDD Gherkin runners or equivalent bindings are selected
+- [ ] Required BDD and ATDD practices have Gherkin runners or equivalent bindings
+- [ ] Every BDD/ATDD `N/A` remains justified and is not contradicted by the planned behavior
 - [ ] Coverage/lint/static/runtime gate commands are declared
 - [ ] Test reports are stored by suite under `tests/reports/`
 - [ ] Traceability approach is explicit

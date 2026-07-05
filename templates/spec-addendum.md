@@ -3,24 +3,28 @@
 
 ## Test-First Specification Addendum *(mandatory)*
 
-### Test Classification Matrix
+### Test Classification and Applicability Matrix
 For every User Story, Functional Requirement, Success Criterion requiring buildable work, Edge Case, and Error Condition, define the required test coverage before planning.
 
-| Source ID | Source Type | Description | Required Evidence | Test Intent | Gherkin Required? | Notes |
-|-----------|-------------|-------------|-------------------|-------------|-------------------|-------|
-| US-001 | User Story | [story summary] | ATDD, BDD, TDD | [acceptance + behavior + implementation verification] | Yes for ATDD/BDD | [notes] |
-| FR-001 | Functional Requirement | [requirement summary] | [TDD/BDD/ATDD] | [what proves it works] | [Yes/No] | [notes] |
-| EC-001 | Edge Case | [edge/error condition] | [TDD/BDD/ATDD] | [what proves safe handling] | [Yes/No] | [notes] |
+| Source ID | Source Type | Description | TDD | BDD | ATDD | Test Intent / N/A Rationale |
+|-----------|-------------|-------------|-----|-----|------|-----------------------------|
+| US-001 | User Story | [story summary] | Required | [Required/N/A] | [Required/N/A] | [evidence intent or concrete N/A rationale] |
+| FR-001 | Functional Requirement | [requirement summary] | Required | [Required/N/A] | [Required/N/A] | [what proves it works or why a practice does not apply] |
+| EC-001 | Edge Case | [edge/error condition] | Required | [Required/N/A] | [Required/N/A] | [what proves safe handling or why a practice does not apply] |
 
 Rules:
 - Each executable test artifact MUST declare exactly one owning suite: `TDD`, `BDD`, or `ATDD`.
 - Required evidence MAY name multiple practices, and one artifact MAY support multiple evidence roles or source IDs.
 - Do not create equivalent copies of an artifact solely to place it in more than one suite.
-- BDD and ATDD entries MUST use Gherkin syntax and MUST have stable scenario IDs.
+- TDD is required for production logic.
+- BDD is required for user-visible behavior, business rules, alternate flows, and observable error behavior.
+- ATDD is required for stakeholder-facing acceptance criteria and release boundaries.
+- BDD or ATDD MAY be `N/A` only for technical-only work lacking the corresponding behavior or acceptance boundary. Every `N/A` MUST state a concrete rationale and alternative TDD or quality-gate evidence.
+- Required BDD and ATDD entries MUST use Gherkin syntax and MUST have stable scenario IDs.
 - TDD entries MUST cover happy paths, boundary values, invalid inputs, state transitions, integration contracts, and expected error sources.
 - At least one negative-path test MUST exist for every requirement with validation, permissions, input parsing, persistence, external I/O, concurrency, or failure modes.
 
-### ATDD Acceptance Scenarios *(Gherkin, mandatory)*
+### ATDD Acceptance Scenarios *(Gherkin, mandatory when ATDD is Required)*
 Create stakeholder-facing acceptance scenarios under `tests/atdd/features/`.
 
 ```gherkin
@@ -33,7 +37,7 @@ Feature: [Feature capability]
     And [measurable success or invariant]
 ```
 
-### BDD Behavior Scenarios *(Gherkin, mandatory)*
+### BDD Behavior Scenarios *(Gherkin, mandatory when BDD is Required)*
 Create behavior examples under `tests/bdd/features/`.
 
 ```gherkin
@@ -56,7 +60,8 @@ Define the implementation-level tests required before code is written.
 ### Test Traceability Requirements
 Before `/speckit.plan` is considered complete:
 - Every `FR-###` MUST have at least one `TDD`, `BDD`, or `ATDD` test mapping.
-- Every user story MUST have at least one ATDD scenario and one BDD scenario.
+- Every user story MUST record a `Required` or justified `N/A` decision for BDD and ATDD.
+- Every `Required` decision MUST map to at least one corresponding scenario.
 - Every Gherkin scenario MUST include suite, user story, and requirement tags.
 - All expected error sources, edge cases, and boundary conditions MUST be represented in the matrix.
 - Every executable artifact MUST have one owning suite, with all additional evidence roles represented through traceability rather than duplicated tests.

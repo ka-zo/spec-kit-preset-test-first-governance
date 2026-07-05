@@ -6,6 +6,8 @@
 - Replace overstated "enforces" wording with "governs" in preset metadata and documentation.
 - Distinguish complementary TDD, BDD, and ATDD practices from primary suite ownership.
 - Allow one artifact to support multiple evidence roles while prohibiting label-driven duplication of tests, scenarios, bindings, and shared support code.
+- Make BDD and ATDD applicability explicit instead of requiring both indiscriminately for every story.
+- Permit governed `N/A` decisions for technical-only work when backed by a concrete rationale and alternative TDD or quality-gate evidence.
 
 ## 1.0.0 - 2026-07-05
 

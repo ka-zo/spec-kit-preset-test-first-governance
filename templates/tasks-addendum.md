@@ -3,7 +3,7 @@
 
 ## Mandatory Test-First Task Rules *(overrides any optional-test wording)*
 
-Tests are **mandatory** for every feature. If any lower-priority or core template says tests are optional, this preset supersedes that wording: create TDD, BDD, and ATDD tasks whenever the corresponding behavior, acceptance criterion, implementation unit, edge case, or error source exists.
+Tests are **mandatory** for every feature. If any lower-priority or core template says tests are optional, this preset supersedes that wording. Create TDD tasks for production logic. Create BDD and ATDD tasks when the specification marks those practices `Required`; preserve justified `N/A` decisions instead of creating ceremonial scenarios.
 
 ### Extended Task Format
 Every task MUST keep the Spec Kit checkbox and ID format and add a suite label when the task creates, modifies, runs, or validates tests.
@@ -25,19 +25,21 @@ Rules:
 ### Required Phase Shape Per User Story
 Within each user story phase, tasks MUST appear in this order:
 
-1. **ATDD specification tasks** — Gherkin acceptance feature files under `tests/atdd/features/`.
-2. **BDD specification tasks** — Gherkin behavior feature files under `tests/bdd/features/`.
+1. **Required ATDD specification tasks** — Gherkin acceptance feature files under `tests/atdd/features/`.
+2. **Required BDD specification tasks** — Gherkin behavior feature files under `tests/bdd/features/`.
 3. **Executable test binding tasks** — ATDD/BDD step definitions, support code, and fixtures.
 4. **TDD test tasks** — failing unit/component/integration/contract/property/negative tests under `tests/tdd/`.
 5. **Expected failure checkpoint** — run the relevant tests and confirm they fail for the intended reason.
 6. **Implementation tasks** — production code only after the above tests exist and fail.
 7. **Refactor tasks** — improve design without changing behavior.
-8. **Validation checkpoint** — run TDD, BDD, ATDD, coverage, linting, static analysis, and runtime smoke gates.
+8. **Validation checkpoint** — run TDD, all required BDD/ATDD suites, coverage, linting, static analysis, and runtime smoke gates.
 
 Shared bindings, fixtures, or helpers MUST be created once under `tests/support/` (or the selected equivalent) and referenced by each consuming suite.
 
+When BDD or ATDD is `N/A`, add no tasks for that practice. The story's tasks MUST reference the recorded rationale and alternative evidence; task generation MUST report a blocking gap if the rationale is missing or contradicted by the story.
+
 ### Required Example Tasks Per Story
-Use exact language like this, adapted to the selected stack:
+Use the applicable lines from this example, adapted to the selected stack. Omit BDD or ATDD lines only when the corresponding practice is justified `N/A`:
 
 ```markdown
 ### Tests for User Story N - [Title] *(MANDATORY: write before implementation)*
@@ -54,14 +56,14 @@ Use exact language like this, adapted to the selected stack:
 ### Implementation for User Story N
 - [ ] T019 [USN] Implement minimal production code for [capability] in src/[path]
 - [ ] T020 [USN] Refactor [module] after tests pass without changing behavior in src/[path]
-- [ ] T021 [USN] [GATE] Run TDD, BDD, ATDD, coverage, linting, static analysis, and runtime smoke gates; store reports under tests/reports/
+- [ ] T021 [USN] [GATE] Run TDD, required BDD/ATDD, coverage, linting, static analysis, and runtime smoke gates; store reports under tests/reports/
 ```
 
 ### Global Quality Gate Tasks
 The final phase MUST include:
 - `[GATE]` coverage aggregation for TDD and changed production code.
-- `[GATE]` BDD scenario report confirming 100% planned scenario pass rate.
-- `[GATE]` ATDD scenario report confirming 100% planned acceptance scenario pass rate.
+- `[GATE]` BDD scenario report confirming 100% planned scenario pass rate when BDD is `Required`.
+- `[GATE]` ATDD scenario report confirming 100% planned acceptance scenario pass rate when ATDD is `Required`.
 - `[GATE]` linting and formatting checks for source and tests.
 - `[GATE]` static analysis or type checking for source and tests.
 - `[GATE]` runtime smoke validation for the integrated feature.

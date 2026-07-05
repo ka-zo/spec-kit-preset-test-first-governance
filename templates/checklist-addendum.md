@@ -10,14 +10,15 @@
 - [ ] TDD tests are stored under a clearly visible `tests/tdd/` directory or equivalent platform-specific path
 
 ### BDD Completeness
+- [ ] Every user story marks BDD as `Required` or provides a concrete `N/A` rationale and alternative evidence
 - [ ] Every user-visible behavior and business rule has Gherkin scenarios
 - [ ] Every BDD scenario has tags for suite, user story, and requirement IDs
 - [ ] Every BDD scenario has an implemented step binding or equivalent executable mapping
 - [ ] BDD feature files and step definitions are stored under `tests/bdd/` or equivalent platform-specific path
 
 ### ATDD Completeness
-- [ ] Every user story has stakeholder-facing acceptance scenarios in Gherkin syntax
-- [ ] Every buildable success criterion maps to at least one ATDD scenario
+- [ ] Every user story marks ATDD as `Required` or provides a concrete `N/A` rationale and alternative evidence
+- [ ] Every stakeholder-facing acceptance criterion maps to at least one ATDD scenario
 - [ ] Every ATDD scenario has an implemented acceptance binding or equivalent executable mapping
 - [ ] ATDD feature files and step definitions are stored under `tests/atdd/` or equivalent platform-specific path
 
