@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Clarify that the preset governs Spec Kit artifacts and agent instructions, while mechanical enforcement requires project CI checks and branch protection.
+- Replace overstated "enforces" wording with "governs" in preset metadata and documentation.
+
 ## 1.0.0 - 2026-07-05
 
 - Initial Test-First Governance preset.

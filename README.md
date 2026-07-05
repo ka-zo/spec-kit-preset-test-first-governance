@@ -1,6 +1,6 @@
 # Test-First Governance Preset for GitHub Spec Kit
 
-This preset enforces a strict test-first delivery workflow for Spec Kit features:
+This preset governs a strict test-first delivery workflow for Spec Kit features:
 
 - **TDD**: failing implementation-level tests before production code, including happy paths, boundaries, edge cases, and expected error sources.
 - **BDD**: Gherkin behavior scenarios with executable mirrored step bindings.
@@ -30,11 +30,13 @@ specify preset info test-first-governance
 /speckit.converge
 ```
 
-## Enforcement Model
+## Governance and Enforcement Boundary
 
 The preset uses append and wrap composition so it can coexist with other presets. It adds mandatory sections to core templates and wraps core commands with stronger test-first instructions.
 
-Important override: if a lower-priority/core Spec Kit template says tests are optional, this preset supersedes that wording. Tests are mandatory for all buildable behavior.
+Within the Spec Kit workflow, if a lower-priority/core template says tests are optional, this preset supersedes that wording. Tests are mandatory for all buildable behavior.
+
+A preset governs generated artifacts and agent instructions; it does not install test tools, configure CI, or prevent contributors from bypassing the workflow. For mechanical enforcement, projects using this preset MUST configure the test and quality-gate commands selected during planning as required CI checks and, where available, protect the target branch against failing or missing checks.
 
 ## Required Directory Semantics
 
@@ -55,7 +57,7 @@ Platform-specific conventions are allowed only when the suite ownership remains 
   "name": "Test-First Governance",
   "id": "test-first-governance",
   "version": "1.0.0",
-  "description": "Enforces TDD, BDD, and ATDD with mandatory Gherkin scenarios, explicit suite ownership, traceability, coverage, linting, static analysis, and runtime validation gates.",
+  "description": "Governs TDD, BDD, and ATDD with mandatory Gherkin scenarios, explicit suite ownership, traceability, coverage, linting, static analysis, and runtime validation gates.",
   "author": "Your Name or Organization",
   "repository": "https://github.com/your-org/spec-kit-preset-test-first-governance",
   "download_url": "https://github.com/your-org/spec-kit-preset-test-first-governance/archive/refs/tags/v1.0.0.zip",
