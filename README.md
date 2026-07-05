@@ -7,6 +7,8 @@ This preset governs a strict test-first delivery workflow for Spec Kit features:
 - **ATDD**: Gherkin acceptance scenarios with executable mirrored acceptance tests.
 - **Quality gates**: coverage, linting, formatting, static analysis/type checking, runtime smoke checks, and traceability.
 
+TDD, BDD, and ATDD are complementary development practices, not mutually exclusive test types. Every executable test artifact has one **owning suite** for directory, task, command, and report routing, but it MAY provide evidence for multiple practices or requirements. Equivalent tests MUST NOT be copied between suites merely to satisfy labels.
+
 ## Install Locally During Development
 
 ```bash
@@ -45,10 +47,11 @@ tests/
 ├── tdd/
 ├── bdd/
 ├── atdd/
+├── support/
 └── reports/
 ```
 
-Platform-specific conventions are allowed only when the suite ownership remains visible in the path names.
+Platform-specific conventions are allowed only when suite ownership remains visible. Shared fixtures, helpers, and runner adapters belong under `tests/support/` (or an equivalent shared path) instead of being duplicated across suites.
 
 ## Community Catalog Entry Example
 

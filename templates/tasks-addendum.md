@@ -13,6 +13,9 @@ Every task MUST keep the Spec Kit checkbox and ID format and add a suite label w
 ```
 
 Rules:
+- The suite label identifies the artifact's primary owner; it does not claim that TDD, BDD, and ATDD are mutually exclusive test types.
+- If one artifact supplies multiple evidence roles, use its owning-suite label and name the additional mappings in the task description and traceability matrix.
+- Never create duplicate test tasks solely to represent the same evidence under another suite label.
 - `[TDD]` is required for unit, component, integration, contract, property, boundary, negative, mutation, or implementation-level test tasks.
 - `[BDD]` is required for Gherkin behavior feature files, step definitions, behavior fixtures, and BDD runner/report tasks.
 - `[ATDD]` is required for acceptance Gherkin feature files, acceptance step definitions, system/e2e acceptance fixtures, runtime smoke acceptance, and release acceptance reports.
@@ -30,6 +33,8 @@ Within each user story phase, tasks MUST appear in this order:
 6. **Implementation tasks** — production code only after the above tests exist and fail.
 7. **Refactor tasks** — improve design without changing behavior.
 8. **Validation checkpoint** — run TDD, BDD, ATDD, coverage, linting, static analysis, and runtime smoke gates.
+
+Shared bindings, fixtures, or helpers MUST be created once under `tests/support/` (or the selected equivalent) and referenced by each consuming suite.
 
 ### Required Example Tasks Per Story
 Use exact language like this, adapted to the selected stack:

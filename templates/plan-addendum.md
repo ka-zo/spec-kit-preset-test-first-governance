@@ -29,6 +29,10 @@ tests/
 │   │   └── regression/
 │   ├── steps/
 │   └── support/
+├── support/
+│   ├── fixtures/
+│   ├── helpers/
+│   └── runner-adapters/
 └── reports/
     ├── tdd/
     ├── bdd/
@@ -36,6 +40,8 @@ tests/
 ```
 
 If the repository uses a platform-specific convention, keep the platform convention but preserve the same semantic split: `tdd`, `bdd`, `atdd`, and `reports` MUST be visible in directory names.
+
+Suite directories identify primary ownership, not mutually exclusive test types. Shared fixtures, helpers, environment setup, and runner adapters MUST live under `tests/support/` or an equivalent shared path unless they are genuinely suite-specific. The plan MUST identify and remove equivalent scenarios or tests duplicated only to satisfy multiple practice labels.
 
 ### Test Tooling Decisions
 | Suite/Gate | Tool | Scope | Required Command | Output Path | Blocking? |

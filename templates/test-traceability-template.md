@@ -6,11 +6,11 @@
 
 ## Coverage Matrix
 
-| Source ID | Source Type | Test Suite | Test/Scenario ID | Artifact Path | Execution Command | Status | Notes |
-|-----------|-------------|------------|------------------|---------------|-------------------|--------|-------|
-| FR-001 | Functional Requirement | TDD | TDD-US1-001 | tests/tdd/unit/test_[name].[ext] | [command] | Planned | [notes] |
-| US1 | User Story | BDD | BDD-US1-001 | tests/bdd/features/user-stories/[feature].feature | [command] | Planned | [notes] |
-| US1 | User Story | ATDD | ATDD-US1-001 | tests/atdd/features/acceptance/[feature].feature | [command] | Planned | [notes] |
+| Source ID | Source Type | Owning Suite | Evidence Role(s) | Test/Scenario ID | Artifact Path | Execution Command | Status | Notes |
+|-----------|-------------|--------------|------------------|------------------|---------------|-------------------|--------|-------|
+| FR-001 | Functional Requirement | TDD | TDD | TDD-US1-001 | tests/tdd/unit/test_[name].[ext] | [command] | Planned | [notes] |
+| US1 | User Story | BDD | BDD | BDD-US1-001 | tests/bdd/features/user-stories/[feature].feature | [command] | Planned | [notes] |
+| US1 | User Story | ATDD | ATDD, BDD | ATDD-US1-001 | tests/atdd/features/acceptance/[feature].feature | [command] | Planned | [shared acceptance/behavior evidence] |
 
 ## Required Checks
 
@@ -18,4 +18,5 @@
 - [ ] Every user story has BDD and ATDD scenario coverage
 - [ ] Every edge/error case has a mapped negative, BDD, or ATDD test
 - [ ] Every Gherkin scenario has an executable binding
-- [ ] No product test case is unclassified
+- [ ] Every executable artifact has exactly one owning suite
+- [ ] Multi-role evidence is mapped without duplicating equivalent artifacts

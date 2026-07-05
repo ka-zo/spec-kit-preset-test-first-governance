@@ -4,7 +4,8 @@ Apply these checks in addition to the core cross-artifact analysis.
 
 ## Additional Critical Findings
 Report a CRITICAL issue if any of the following are true:
-- Any product test case is not classified as `TDD`, `BDD`, or `ATDD`.
+- Any executable product-test artifact does not have exactly one owning suite (`TDD`, `BDD`, or `ATDD`).
+- Equivalent tests, scenarios, bindings, or fixtures are duplicated solely to satisfy multiple practice labels.
 - Any user story lacks ATDD Gherkin scenario coverage.
 - Any user story lacks BDD Gherkin scenario coverage.
 - Any BDD or ATDD Gherkin scenario lacks stable tags for suite, user story, and requirement/success/edge-case ID.

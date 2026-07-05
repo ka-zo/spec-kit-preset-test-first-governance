@@ -31,4 +31,6 @@
 ### Traceability
 - [ ] Every FR/SC/US/EC maps to one or more TDD, BDD, or ATDD artifacts
 - [ ] Every Gherkin scenario ID maps to an executable test or step binding
-- [ ] No product test case is unclassified
+- [ ] Every executable product-test artifact has exactly one owning suite
+- [ ] Additional evidence roles are represented in traceability rather than duplicate tests
+- [ ] Shared fixtures, helpers, and runner adapters are not duplicated across suites

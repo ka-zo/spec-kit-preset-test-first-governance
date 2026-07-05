@@ -6,14 +6,16 @@
 ### Test Classification Matrix
 For every User Story, Functional Requirement, Success Criterion requiring buildable work, Edge Case, and Error Condition, define the required test coverage before planning.
 
-| Source ID | Source Type | Description | Required Suite | Test Intent | Gherkin Required? | Notes |
-|-----------|-------------|-------------|----------------|-------------|-------------------|-------|
+| Source ID | Source Type | Description | Required Evidence | Test Intent | Gherkin Required? | Notes |
+|-----------|-------------|-------------|-------------------|-------------|-------------------|-------|
 | US-001 | User Story | [story summary] | ATDD, BDD, TDD | [acceptance + behavior + implementation verification] | Yes for ATDD/BDD | [notes] |
 | FR-001 | Functional Requirement | [requirement summary] | [TDD/BDD/ATDD] | [what proves it works] | [Yes/No] | [notes] |
 | EC-001 | Edge Case | [edge/error condition] | [TDD/BDD/ATDD] | [what proves safe handling] | [Yes/No] | [notes] |
 
 Rules:
-- Product tests MUST be explicitly classified as `TDD`, `BDD`, or `ATDD`.
+- Each executable test artifact MUST declare exactly one owning suite: `TDD`, `BDD`, or `ATDD`.
+- Required evidence MAY name multiple practices, and one artifact MAY support multiple evidence roles or source IDs.
+- Do not create equivalent copies of an artifact solely to place it in more than one suite.
 - BDD and ATDD entries MUST use Gherkin syntax and MUST have stable scenario IDs.
 - TDD entries MUST cover happy paths, boundary values, invalid inputs, state transitions, integration contracts, and expected error sources.
 - At least one negative-path test MUST exist for every requirement with validation, permissions, input parsing, persistence, external I/O, concurrency, or failure modes.
@@ -57,3 +59,4 @@ Before `/speckit.plan` is considered complete:
 - Every user story MUST have at least one ATDD scenario and one BDD scenario.
 - Every Gherkin scenario MUST include suite, user story, and requirement tags.
 - All expected error sources, edge cases, and boundary conditions MUST be represented in the matrix.
+- Every executable artifact MUST have one owning suite, with all additional evidence roles represented through traceability rather than duplicated tests.

@@ -25,6 +25,8 @@ Use this extended format for all test and gate tasks:
 
 `[GATE]` is allowed only for non-product validation tasks and MUST state the protected suite or report path.
 
+The label identifies primary suite ownership. If an artifact supports multiple evidence roles, create one task under its owning-suite label and record the other mappings in the description and traceability matrix. Do not generate equivalent tasks or artifacts solely to satisfy multiple labels.
+
 ## Required Per-Story Minimum
 Each user story MUST include at least:
 - one `[ATDD]` Gherkin feature task;
