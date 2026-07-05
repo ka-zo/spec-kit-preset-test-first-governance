@@ -1,0 +1,31 @@
+# Test-First Implementation Wrapper
+
+Apply these execution rules in addition to the core implementation workflow.
+
+## Critical Execution Rules
+- Do not write production code for a user story until its required ATDD, BDD, and TDD test tasks exist.
+- Run the new ATDD, BDD, and TDD tests before implementation and confirm they fail for the expected reason. Record red-state evidence under `tests/reports/{suite}/`.
+- Implement the smallest production change needed to pass the failing tests.
+- Refactor only after tests pass, and rerun the relevant suites after refactoring.
+- Run full TDD, BDD, ATDD, coverage, linting, static analysis, and runtime smoke gates before marking the story complete.
+- Mark tasks `[X]` only after the relevant tests/gates have been executed and evidence paths exist.
+
+## Failure Handling
+If a test fails for an unexpected reason, stop the current story implementation and report:
+- failing command;
+- failing suite (`TDD`, `BDD`, `ATDD`, or gate);
+- expected failure reason vs actual failure reason;
+- file path and scenario/test ID;
+- proposed fix.
+
+{CORE_TEMPLATE}
+
+## Additional Done Criteria
+- [ ] All required red-state reports exist
+- [ ] All TDD tests pass and coverage thresholds are met
+- [ ] All BDD scenarios pass and each scenario has an executable binding
+- [ ] All ATDD scenarios pass and each scenario has an executable binding
+- [ ] Linting/formatting has zero blocking findings
+- [ ] Static analysis/type checking has zero blocking findings
+- [ ] Runtime smoke checks pass
+- [ ] Traceability matrix has no missing FR/SC/US/EC coverage
