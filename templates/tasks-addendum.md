@@ -3,7 +3,7 @@
 
 ## Mandatory Test-First Task Rules *(overrides any optional-test wording)*
 
-Tests are **mandatory** for every feature. If any lower-priority or core template says tests are optional, this preset supersedes that wording. Create TDD tasks for production logic. Create BDD and ATDD tasks when the specification marks those practices `Required`; preserve justified `N/A` decisions instead of creating ceremonial scenarios.
+Tests are **mandatory** for every feature. If any lower-priority or core template says tests are optional, this preset supersedes that wording. Create TDD tasks for production logic. Create the minimum non-duplicative scenario tasks needed to cover every `Required` BDD and ATDD evidence role; preserve justified `N/A` decisions instead of creating ceremonial scenarios.
 
 ### Core-Compatible Task Format
 Every task MUST keep the core Spec Kit checkbox, task ID, parallel marker, and `[US#]` story-label format. For test and gate tasks, place the owning-suite marker as the first token of the description.
@@ -17,6 +17,7 @@ Rules:
 - The suite label identifies the artifact's primary owner; it does not claim that TDD, BDD, and ATDD are mutually exclusive test types.
 - If one artifact supplies multiple evidence roles, use its owning-suite label and name the additional mappings in the task description and traceability matrix.
 - Never create duplicate test tasks solely to represent the same evidence under another suite label.
+- A `Required` BDD or ATDD role does not require a task with that suite label when an artifact owned by another suite fully provides the required evidence.
 - `[TDD]` is required for unit, component, integration, contract, property, boundary, negative, mutation, or implementation-level test tasks.
 - `[BDD]` is required for Gherkin behavior feature files, step definitions, behavior fixtures, and BDD runner/report tasks.
 - `[ATDD]` is required for acceptance Gherkin feature files, acceptance step definitions, and system/e2e acceptance fixtures.
@@ -26,7 +27,7 @@ Rules:
 ### Required Phase Shape Per User Story
 Within each user story phase:
 
-1. **Scenario specification** — create required ATDD acceptance and BDD behavior scenarios before production implementation begins.
+1. **Scenario specification** — create the minimum non-duplicative set of scenarios that covers all required ATDD acceptance and BDD behavior evidence roles before production implementation begins.
 2. **Traceability planning update** — add planned artifact IDs, paths, commands, and behavior slices to `specs/<feature>/test-traceability.md`.
 3. **Incremental behavior cycles** — divide the story into the smallest meaningful slices that can be independently verified. For each slice, tasks MUST appear in this order:
    1. **Executable evidence** — add only the ATDD/BDD bindings and TDD tests needed for the current slice.
@@ -35,7 +36,7 @@ Within each user story phase:
    4. **Passing checkpoint** — rerun the slice evidence and record `Green`.
    5. **Refactor** — improve the design and rerun the relevant evidence while it remains green.
 4. **Repeat** — complete the cycle before adding executable evidence for the next slice; do not accumulate all failing tests for the story before any production implementation.
-5. **Story validation checkpoint** — after all slices are green, run TDD, all required BDD/ATDD suites, coverage, linting, formatting, and every gate marked `Required`.
+5. **Story validation checkpoint** — after all slices are green, run TDD and all executable evidence mapped to required BDD/ATDD roles, plus coverage, linting, formatting, and every gate marked `Required`.
 6. **Traceability result update** — record final `Green`, `Blocked`, or approved `N/A` evidence.
 
 Shared bindings, fixtures, or helpers MUST be created once under `tests/support/` (or the selected equivalent) and referenced by each consuming suite.
@@ -43,7 +44,7 @@ Shared bindings, fixtures, or helpers MUST be created once under `tests/support/
 When BDD or ATDD is `N/A`, add no tasks for that practice. The story's tasks MUST reference the recorded rationale and alternative evidence; task generation MUST report a blocking gap if the rationale is missing or contradicted by the story.
 
 ### Required Example Tasks Per Story
-Use the applicable lines from this example, adapted to the selected stack. Omit BDD or ATDD lines only when the corresponding practice is justified `N/A`:
+Use the applicable lines from this example, adapted to the selected stack. The example uses distinct scenarios because its acceptance and behavior evidence differ. When one scenario fully satisfies both roles, keep only its owning-suite tasks and record both roles in traceability.
 
 ```markdown
 ### Tests for User Story 1 - [Title] *(MANDATORY: write before implementation)*
@@ -72,15 +73,14 @@ Use the applicable lines from this example, adapted to the selected stack. Omit 
 - [ ] T028 [US1] Refactor [module] while keeping the slice 2 evidence green in src/[path]
 
 ### User Story 1 Completion
-- [ ] T029 [US1] [GATE] Run TDD, required BDD/ATDD, coverage, linting, formatting, and all gates marked Required; retain evidence per the plan
+- [ ] T029 [US1] [GATE] Run TDD, all evidence mapped to required BDD/ATDD roles, coverage, linting, formatting, and all gates marked Required; retain evidence per the plan
 - [ ] T030 [US1] [GATE] Update specs/<feature>/test-traceability.md with final statuses and evidence paths
 ```
 
 ### Global Quality Gate Tasks
 The final phase MUST include:
 - `[GATE]` coverage aggregation for TDD and changed production code.
-- `[GATE]` BDD scenario report confirming 100% planned scenario pass rate when BDD is `Required`.
-- `[GATE]` ATDD scenario report confirming 100% planned acceptance scenario pass rate when ATDD is `Required`.
+- `[GATE]` evidence report confirming 100% of scenarios mapped to required BDD and ATDD roles pass; reuse one owning-suite result when a scenario supplies both roles.
 - `[GATE]` linting and formatting checks for source and tests.
 - `[GATE]` required static analysis or type checking for source and tests.
 - `[GATE]` required security and runtime smoke validation where applicable.

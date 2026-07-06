@@ -11,15 +11,14 @@
 | Source ID | Source Type | Owning Suite | Evidence Role(s) | Test/Scenario ID | Artifact Path | Execution Command | Status | Evidence Path | Notes |
 |-----------|-------------|--------------|------------------|------------------|---------------|-------------------|--------|---------------|-------|
 | FR-001 | Functional Requirement | TDD | TDD | TDD-US1-001 | tests/tdd/unit/test_[name].[ext] | [command] | Planned | [task/PR/CI/report link] | [notes] |
-| US1 | User Story | BDD | BDD | BDD-US1-001 | tests/bdd/features/user-stories/[feature].feature | [command] | Planned | [task/PR/CI/report link] | [notes] |
 | US1 | User Story | ATDD | ATDD, BDD | ATDD-US1-001 | tests/atdd/features/acceptance/[feature].feature | [command] | Planned | [task/PR/CI/report link] | [shared acceptance/behavior evidence] |
 
 ## BDD and ATDD Applicability
 
-| User Story | Practice | Decision | N/A Rationale | Alternative Evidence |
-|------------|----------|----------|---------------|----------------------|
-| US1 | BDD | [Required/N/A] | [concrete rationale when N/A] | [TDD/gate artifact IDs] |
-| US1 | ATDD | [Required/N/A] | [concrete rationale when N/A] | [TDD/gate artifact IDs] |
+| User Story | Practice | Decision | Scenario Evidence ID(s) | N/A Rationale | Alternative Evidence |
+|------------|----------|----------|-------------------------|---------------|----------------------|
+| US1 | BDD | Required | ATDD-US1-001 |  |  |
+| US1 | ATDD | Required | ATDD-US1-001 |  |  |
 
 ## Status Vocabulary
 
@@ -36,7 +35,7 @@
 - [ ] Test, scenario, binding, task, and Gherkin IDs match verbatim across artifacts
 - [ ] Every FR has at least one mapped test artifact
 - [ ] Every user story records BDD and ATDD as `Required` or justified `N/A`
-- [ ] Every `Required` BDD/ATDD decision has scenario coverage
+- [ ] Every `Required` BDD/ATDD decision maps to scenario evidence carrying that role, regardless of owning suite
 - [ ] Every `N/A` decision has a concrete rationale and alternative evidence
 - [ ] Every edge/error case has a mapped negative, BDD, or ATDD test
 - [ ] Every Gherkin scenario has an executable binding

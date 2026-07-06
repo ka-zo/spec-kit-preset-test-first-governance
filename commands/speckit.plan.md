@@ -11,6 +11,7 @@ The implementation plan MUST include:
 - red-green-refactor execution model for every user story;
 - a materialized `specs/<feature>/test-traceability.md` mapping FR/SC/US/EC IDs to test and scenario IDs;
 - BDD and ATDD applicability decisions, including rationale and alternative evidence for every `N/A`.
+- non-duplicative scenario mappings showing how every `Required` BDD/ATDD role is satisfied and which suite owns each artifact.
 
 ## Mandatory Traceability Creation
 Before reporting planning complete:
@@ -34,7 +35,8 @@ Choose stack-native tools. Examples:
 ## Additional Planning Gate
 Before completing the plan, verify:
 - [ ] The plan makes tests mandatory, not optional
-- [ ] Required BDD and ATDD practices have Gherkin runners or equivalent bindings
+- [ ] Every required BDD and ATDD evidence role maps to an executable binding and owning-suite command
+- [ ] Shared BDD/ATDD evidence has one owning suite and one execution path, with both roles recorded in traceability
 - [ ] Every BDD/ATDD `N/A` remains justified and is not contradicted by the planned behavior
 - [ ] Coverage thresholds protect changed code and the accepted project baseline
 - [ ] Every gate has a command or a justified `N/A`, plus blocking behavior and evidence retention

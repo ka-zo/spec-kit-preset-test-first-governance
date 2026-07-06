@@ -46,11 +46,13 @@ Suite directories identify primary ownership, not mutually exclusive test types.
 ### BDD and ATDD Applicability
 For every user story, carry forward the specification's BDD and ATDD decisions:
 
-| User Story | BDD | ATDD | N/A Rationale | Alternative Evidence |
-|------------|-----|------|---------------|----------------------|
-| US1 | [Required/N/A] | [Required/N/A] | [concrete rationale when applicable] | [TDD/gate artifact IDs] |
+| User Story | BDD | ATDD | Scenario Evidence ID(s) | N/A Rationale | Alternative Evidence |
+|------------|-----|------|-------------------------|---------------|----------------------|
+| US1 | [Required/N/A] | [Required/N/A] | [IDs and BDD/ATDD evidence roles] | [concrete rationale when applicable] | [TDD/gate artifact IDs] |
 
 The plan MUST NOT turn an approved `N/A` into ceremonial scenarios. If planning reveals observable behavior or a stakeholder acceptance boundary, change the decision to `Required` and update the specification.
+
+A `Required` decision does not require a scenario owned by that practice. When one scenario fully covers both behavior and acceptance intent, assign it one owning suite, map both evidence roles, and use its owning-suite path, command, and report. Create separate BDD and ATDD artifacts only when their examples, execution boundaries, or assertions materially differ.
 
 ### Traceability Materialization
 Before planning completes:
@@ -64,11 +66,11 @@ All populated IDs MUST reuse core forms where available (`US1`, `FR-001`, and `S
 If the file already exists, update it in place and preserve valid execution history.
 
 ### Test Tooling and Gate Decisions
-| Suite/Gate | Applicability | Tool and Required Command | Threshold | Evidence Retention | Rationale |
-|------------|---------------|---------------------------|-----------|--------------------|-----------|
+| Practice/Gate | Applicability | Tool and Required Command | Threshold | Evidence Retention | Rationale |
+|---------------|---------------|---------------------------|-----------|--------------------|-----------|
 | TDD | Required | [runner + command] | all planned tests pass | [CI output/artifact] | production logic |
-| BDD | [Required/N/A] | [runner + command or N/A] | all planned scenarios pass | [CI output/artifact] | [decision] |
-| ATDD | [Required/N/A] | [runner + command or N/A] | all planned scenarios pass | [CI output/artifact] | [decision] |
+| BDD | [Required/N/A] | [owning-suite command(s), shared when applicable, or N/A] | all mapped BDD evidence passes | [CI output/artifact] | [decision] |
+| ATDD | [Required/N/A] | [owning-suite command(s), shared when applicable, or N/A] | all mapped ATDD evidence passes | [CI output/artifact] | [decision] |
 | Coverage | Required | [tool + command] | [line/branch thresholds] | [CI artifact] | changed production code |
 | Lint/Format | Required | [tools + commands] | zero blocking findings | [CI output] | source consistency |
 | Static Analysis | [Required/N/A] | [tool + command or N/A] | [severity policy] | [CI output/artifact] | [stack/risk rationale] |
@@ -99,4 +101,4 @@ For each user story:
 5. Implement the smallest production change needed to make the slice pass.
 6. Run the slice evidence, record `Green`, and refactor while keeping the relevant suites green.
 7. Repeat steps 3–6 for the next slice instead of accumulating all failing tests before any production code is written.
-8. At story completion, run the full TDD and required BDD/ATDD suites plus coverage, linting, formatting, and every gate marked `Required`.
+8. At story completion, run the full TDD suite and all executable evidence mapped to required BDD/ATDD roles, plus coverage, linting, formatting, and every gate marked `Required`.

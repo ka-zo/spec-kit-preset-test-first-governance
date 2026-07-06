@@ -9,7 +9,7 @@ Apply these execution rules in addition to the core implementation workflow.
 - Implement the smallest production change needed to pass the current slice's failing evidence.
 - Rerun the slice evidence, update it to `Green`, and refactor while keeping the relevant suites green.
 - Complete one Red-Green-Refactor cycle before adding executable evidence for the next slice; do not batch every failing test for the story before implementation.
-- Run full TDD, all required BDD/ATDD suites, coverage, linting, formatting, and every quality gate marked `Required` before marking the story complete.
+- Run full TDD, all executable evidence mapped to required BDD/ATDD roles, coverage, linting, formatting, and every quality gate marked `Required` before marking the story complete.
 - Update each executed artifact or gate to `Green` or `Blocked`; retain `N/A` only with its approved rationale and alternative evidence.
 - Mark tasks `[X]` only after the relevant tests/gates have been executed and evidence paths exist.
 
@@ -26,8 +26,9 @@ If a test fails for an unexpected reason, stop the current story implementation 
 ## Additional Done Criteria
 - [ ] Reproducible red-state evidence exists in the retention location declared by the plan
 - [ ] All TDD tests pass and approved coverage thresholds are met without baseline regression
-- [ ] All required BDD scenarios pass and each scenario has an executable binding
-- [ ] All required ATDD scenarios pass and each scenario has an executable binding
+- [ ] All scenarios mapped to required BDD roles pass and have executable bindings
+- [ ] All scenarios mapped to required ATDD roles pass and have executable bindings
+- [ ] Shared BDD/ATDD evidence uses one owning-suite execution route and provides both mapped roles
 - [ ] Every BDD/ATDD `N/A` remains justified and has alternative evidence
 - [ ] Linting/formatting has zero blocking findings
 - [ ] Every required static-analysis, security, and runtime-smoke gate passes

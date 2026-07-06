@@ -3,11 +3,11 @@
 Apply these requirements in addition to the core task-generation workflow.
 
 ## Critical Override: Tests Are Not Optional
-If the core command or template says tests are optional, replace that rule with this preset rule: tests are mandatory. Generate TDD tasks for production logic. Generate ATDD and BDD tasks when the specification marks them `Required`; preserve justified `N/A` decisions and report missing or contradictory rationales as blocking gaps.
+If the core command or template says tests are optional, replace that rule with this preset rule: tests are mandatory. Generate TDD tasks for production logic. Generate the minimum non-duplicative scenario tasks needed to cover all `Required` ATDD and BDD evidence roles; preserve justified `N/A` decisions and report missing or contradictory rationales as blocking gaps.
 
 ## Mandatory Incremental Task Ordering
 For each user story:
-1. Create the required `[ATDD]` acceptance and `[BDD]` behavior scenario specifications before production implementation begins.
+1. Create the minimum non-duplicative set of scenario specifications covering all required ATDD acceptance and BDD behavior evidence roles before production implementation begins.
 2. Add a `[GATE]` task that records planned artifact IDs, paths, commands, and behavior slices in `specs/<feature>/test-traceability.md`.
 3. Divide implementation into the smallest meaningful behavior slices that can be independently verified.
 4. For each slice, generate one ordered Red-Green-Refactor cycle:
@@ -35,8 +35,7 @@ Preserve core Spec Kit story labels such as `[US1]`, `[US2]`, and `[US3]`. Use t
 
 ## Required Per-Story Minimum
 Each user story MUST include at least:
-- one `[ATDD]` Gherkin feature task when ATDD is `Required`;
-- one `[BDD]` Gherkin feature task when BDD is `Required`;
+- scenario tasks covering every `Required` BDD and ATDD evidence role; one owning-suite task MAY cover both roles;
 - one `[TDD]` happy-path test task;
 - one `[TDD]` edge/error/boundary test task;
 - a red-state run before the production change for each behavior slice, with evidence retained in task/PR/CI output or an audit-required report;
@@ -49,7 +48,7 @@ Each user story MUST include at least:
 Include in the task generation completion report:
 - Count of `[TDD]`, `[BDD]`, `[ATDD]`, and `[GATE]` tasks
 - Confirmation that no implementation task precedes its required tests
-- List of Gherkin feature files planned for BDD and ATDD
+- List of Gherkin feature files, their owning suites, and their BDD/ATDD evidence roles
 - List of BDD/ATDD `N/A` decisions with rationale and alternative evidence
 - List of gate applicability decisions, commands, thresholds, and evidence destinations
 - Confirmation that traceability creation and update tasks use `specs/<feature>/test-traceability.md`

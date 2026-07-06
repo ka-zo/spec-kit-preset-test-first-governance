@@ -33,6 +33,8 @@ TDD, BDD, and ATDD are complementary development practices, not mutually exclusi
 
 TDD remains mandatory for production logic. Each user story MUST explicitly mark BDD and ATDD as `Required` or `N/A`. `N/A` is permitted only for technical-only work with no corresponding observable behavior or stakeholder acceptance boundary; it requires a concrete rationale and alternative TDD or quality-gate evidence.
 
+A `Required` BDD or ATDD decision creates an evidence obligation, not a quota for a separately owned artifact. One Gherkin scenario MAY satisfy both practices when its examples and assertions fully cover both the user-visible behavior and the stakeholder-facing acceptance outcome. The scenario keeps one owning suite, and the traceability matrix records both evidence roles. Separate scenarios are required only when the two practices need materially different examples, execution boundaries, or assertions.
+
 ## Identifier Contract
 
 - Reuse core Spec Kit identifiers: `User Story 1`, `US1`, `[US1]`, `FR-001`, `SC-001`, and `T###`.

@@ -11,14 +11,14 @@
 
 ### BDD Completeness
 - [ ] Every user story marks BDD as `Required` or provides a concrete `N/A` rationale and alternative evidence
-- [ ] Every user-visible behavior and business rule has Gherkin scenarios
+- [ ] Every user-visible behavior and business rule maps to Gherkin scenario evidence carrying the BDD role
 - [ ] Every BDD scenario has tags for suite, user story, and requirement IDs
 - [ ] Every BDD scenario has an implemented step binding or equivalent executable mapping
 - [ ] BDD feature files and step definitions are stored under `tests/bdd/` or equivalent platform-specific path
 
 ### ATDD Completeness
 - [ ] Every user story marks ATDD as `Required` or provides a concrete `N/A` rationale and alternative evidence
-- [ ] Every stakeholder-facing acceptance criterion maps to at least one ATDD scenario
+- [ ] Every stakeholder-facing acceptance criterion maps to Gherkin scenario evidence carrying the ATDD role
 - [ ] Every ATDD scenario has an implemented acceptance binding or equivalent executable mapping
 - [ ] ATDD feature files and step definitions are stored under `tests/atdd/` or equivalent platform-specific path
 
@@ -41,5 +41,6 @@
 - [ ] Every Gherkin scenario ID maps to an executable test or step binding
 - [ ] Every executable product-test artifact has exactly one owning suite
 - [ ] Additional evidence roles are represented in traceability rather than duplicate tests
+- [ ] A scenario shared by BDD and ATDD has one owning suite, both evidence roles, and no label-driven duplicate
 - [ ] Shared fixtures, helpers, and runner adapters are not duplicated across suites
 - [ ] Planned, Red, Green, Blocked, and N/A statuses agree with current task and execution evidence

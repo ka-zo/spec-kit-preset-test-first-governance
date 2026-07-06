@@ -16,6 +16,8 @@ Rules:
 - Reuse core story identifiers such as `US1`; do not introduce a parallel alias.
 - Each executable test artifact MUST declare exactly one owning suite: `TDD`, `BDD`, or `ATDD`.
 - Required evidence MAY name multiple practices, and one artifact MAY support multiple evidence roles or source IDs.
+- A `Required` BDD or ATDD decision MUST map to scenario evidence for that role, but it does not require a separately owned artifact.
+- One scenario MAY satisfy both BDD and ATDD when it fully covers both intents; record both roles and one owning suite in traceability.
 - Do not create equivalent copies of an artifact solely to place it in more than one suite.
 - TDD is required for production logic.
 - BDD is required for user-visible behavior, business rules, alternate flows, and observable error behavior.
@@ -25,8 +27,8 @@ Rules:
 - TDD entries MUST cover happy paths, boundary values, invalid inputs, state transitions, integration contracts, and expected error sources.
 - At least one negative-path test MUST exist for every requirement with validation, permissions, input parsing, persistence, external I/O, concurrency, or failure modes.
 
-### ATDD Acceptance Scenarios *(Gherkin, mandatory when ATDD is Required)*
-Create stakeholder-facing acceptance scenarios under `tests/atdd/features/`.
+### ATDD Acceptance Evidence *(Gherkin, mandatory when ATDD is Required)*
+Create an ATDD-owned stakeholder-facing scenario under `tests/atdd/features/` when distinct acceptance evidence is needed. A scenario owned by BDD MAY instead satisfy the ATDD role when it fully proves the same stakeholder-facing outcome and traceability records both roles.
 
 ```gherkin
 @ATDD @US1 @FR-001 @SC-001 @ATDD-US1-001
@@ -38,8 +40,8 @@ Feature: [Feature capability]
     And [measurable success or invariant]
 ```
 
-### BDD Behavior Scenarios *(Gherkin, mandatory when BDD is Required)*
-Create behavior examples under `tests/bdd/features/`.
+### BDD Behavior Evidence *(Gherkin, mandatory when BDD is Required)*
+Create a BDD-owned behavior example under `tests/bdd/features/` when distinct behavior evidence is needed. A scenario owned by ATDD MAY instead satisfy the BDD role when it fully proves the same user-visible behavior or business rule and traceability records both roles.
 
 ```gherkin
 @BDD @US1 @FR-001 @BDD-US1-001
@@ -62,7 +64,7 @@ Define the implementation-level tests required before code is written.
 `/speckit.plan` MUST create `specs/<feature>/test-traceability.md` from the resolved `test-traceability-template`. Before planning is considered complete:
 - Every `FR-###` MUST have at least one `TDD`, `BDD`, or `ATDD` test mapping.
 - Every user story MUST record a `Required` or justified `N/A` decision for BDD and ATDD.
-- Every `Required` decision MUST map to at least one corresponding scenario.
+- Every `Required` decision MUST map to at least one scenario carrying the corresponding evidence role; the scenario MAY be owned by another suite.
 - Every Gherkin scenario MUST include suite, user story, and requirement tags.
 - All expected error sources, edge cases, and boundary conditions MUST be represented in the matrix.
 - Every executable artifact MUST have one owning suite, with all additional evidence roles represented through traceability rather than duplicated tests.

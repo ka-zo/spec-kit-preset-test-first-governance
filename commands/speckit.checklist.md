@@ -10,6 +10,7 @@ Include these categories when applicable:
 - BDD applicability, Gherkin completeness, and step-binding mirroring
 - ATDD applicability, acceptance completeness, and executable mirroring
 - rationale and alternative evidence for BDD/ATDD `N/A` decisions
+- non-duplicative BDD/ATDD evidence-role mappings and one owning suite per shared scenario
 - reuse of core story, requirement, success-criterion, and task identifiers
 - minimal, stable edge-case, scenario, test, and binding identifiers where core has no equivalent
 - risk-based coverage, linting, formatting, and applicable static-analysis/security/runtime gates

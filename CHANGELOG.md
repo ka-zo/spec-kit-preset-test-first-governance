@@ -5,6 +5,9 @@
 - Replace batch-all-tests-first task ordering with incremental Red-Green-Refactor cycles scoped to the smallest meaningful behavior slice.
 - Keep required BDD and ATDD scenarios defined before implementation while allowing their executable bindings and TDD tests to be introduced in the cycle that implements the corresponding behavior.
 - Retain full-suite quality gates and final traceability validation at user-story completion.
+- Define BDD and ATDD `Required` decisions as evidence obligations rather than requirements for separate suite-owned artifacts.
+- Allow one Gherkin scenario to satisfy both BDD and ATDD when it fully covers both behavior and stakeholder-acceptance intent, while retaining exactly one owning suite.
+- Require traceability to record every evidence role and prohibit duplicate scenarios, bindings, tasks, commands, or reports created only to satisfy practice labels.
 
 ## 1.1.0 - 2026-07-06
 
