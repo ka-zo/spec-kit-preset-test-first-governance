@@ -1,4 +1,4 @@
-![Test-First Governance Preset for GitHub Spec Kit](assets/spec-kit-preset-test-first-governance-header.png)
+![Test-First Governance Preset for GitHub Spec Kit](assets/spec-kit-preset-test-first-governance-header.jpg)
 
 # Test-First Governance Preset for GitHub Spec Kit
 
