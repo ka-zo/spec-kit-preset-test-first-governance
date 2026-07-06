@@ -1,5 +1,25 @@
 # Test-First Governance Preset for GitHub Spec Kit
 
+## Motivation
+
+Spec-Driven Development makes intent explicit before implementation, but a well-written specification alone does not prove that the resulting software is correct, resilient, or complete. This preset strengthens the path from specification to implementation by requiring test-first executable evidence, behavior and acceptance coverage where applicable, requirement-to-test traceability, and risk-based quality gates.
+
+The goal is to make SDD delivery more robust and repeatable: requirements remain connected to tests, expected failures are observed before production code is written, and implementation is considered complete only when the declared evidence and quality checks support that conclusion.
+
+## Approach
+
+The preset strengthens the existing Spec Kit workflow rather than replacing it. It combines several complementary techniques:
+
+- **Test-Driven Development (TDD)** uses the Red-Green-Refactor cycle: write a failing test, implement the smallest change that makes it pass, then improve the design while tests remain green. This provides rapid feedback and keeps production logic testable.
+- **Behavior-Driven Development (BDD)** describes user-visible behavior and business rules through concrete Gherkin examples. These shared examples reduce ambiguity and connect expected behavior to executable tests.
+- **Acceptance Test-Driven Development (ATDD)** defines stakeholder-facing acceptance evidence before implementation. It helps ensure that delivered functionality satisfies the intended business outcome, not merely its internal design.
+- **Requirement-to-test traceability** connects stories, requirements, edge cases, scenarios, tests, and execution evidence. It exposes missing or stale coverage across the development lifecycle.
+- **Risk-based quality gates** apply coverage, linting, formatting, static analysis, security, and runtime checks according to the project’s technology and risk surface. They provide broader safeguards without imposing irrelevant ceremony.
+
+These techniques are carried through specification, planning, task generation, implementation, and analysis. Tests precede production code, expected failures are observed, required evidence remains traceable, and completion is blocked when declared tests or quality gates do not support it.
+
+## Governance Scope
+
 This preset governs a strict test-first delivery workflow for Spec Kit features:
 
 - **TDD**: failing implementation-level tests before production code, including happy paths, boundaries, edge cases, and expected error sources.
