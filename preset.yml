@@ -42,7 +42,7 @@ provides:
     - type: "template"
       name: "test-traceability-template"
       file: "templates/test-traceability-template.md"
-      description: "Requirement-to-test matrix materialized by speckit.plan at specs/<feature>/test-traceability.md"
+      description: "Normalized requirement-to-test traceability artifact materialized by speckit.plan at specs/<feature>/test-traceability.md"
       strategy: "replace"
     - type: "template"
       name: "gherkin-feature-template"

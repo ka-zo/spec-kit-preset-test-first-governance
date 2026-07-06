@@ -43,5 +43,9 @@
 - [ ] Every executable product-test artifact has exactly one owning suite
 - [ ] Additional evidence roles are represented in traceability rather than duplicate tests
 - [ ] A scenario shared by BDD and ATDD has one owning suite, both evidence roles, and no label-driven duplicate
+- [ ] Artifact definitions and execution results appear once in the Evidence Artifact Registry
+- [ ] FR/SC/US/EC relationships appear in the Source Coverage Map without copied status or evidence fields
+- [ ] Every mapped artifact ID resolves to exactly one registry entry
+- [ ] Quality-gate commands, policies, statuses, and evidence appear once in Quality Gate Results
 - [ ] Shared fixtures, helpers, and runner adapters are not duplicated across suites
 - [ ] Planned, Red, Green, Blocked, and N/A statuses agree with current task and execution evidence

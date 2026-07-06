@@ -8,17 +8,17 @@ If the core command or template says tests are optional, replace that rule with 
 ## Mandatory Incremental Task Ordering
 For each user story:
 1. Create the minimum non-duplicative set of scenario specifications covering all required ATDD acceptance and BDD behavior evidence roles before production implementation begins.
-2. Add a `[GATE]` task that records planned artifact IDs, paths, commands, and behavior slices in `specs/<feature>/test-traceability.md`.
+2. Add a `[GATE]` task that records artifact definitions in the Evidence Artifact Registry and source relationships in the Source Coverage Map.
 3. Divide implementation into the smallest meaningful behavior slices that can be independently verified.
 4. For each slice, generate one ordered Red-Green-Refactor cycle:
    1. `[ATDD]`, `[BDD]`, and/or `[TDD]` tasks add only the executable bindings and tests needed for that slice.
-   2. Suite execution tasks prove the new evidence fails for the intended missing behavior and update its matrix status to `Red`.
+   2. Suite execution tasks prove the new evidence fails for the intended missing behavior and update its registry status to `Red`.
    3. Production implementation tasks make the smallest change needed to pass that evidence.
-   4. Suite execution tasks confirm the slice is `Green` and update its matrix evidence.
+   4. Suite execution tasks confirm the slice is `Green` and update its registry evidence.
    5. Refactor tasks improve the design and rerun the relevant evidence while it remains green.
 5. Repeat the cycle for the next slice. Do not accumulate every failing test for the story before beginning production implementation.
 6. After all slices are green, add `[GATE]` validation tasks for the full test suite, coverage, linting, formatting, and every gate marked `Required`.
-7. Finish with a `[GATE]` task that records final `Green`, `Blocked`, or approved `N/A` results and performs the story-level traceability review.
+7. Finish with a `[GATE]` task that records final artifact results in the registry, gate results in Quality Gate Results, and performs the story-level traceability review.
 
 ## Core-Compatible Suite Markers
 Preserve the core task format and place the suite marker as the first token of the description for test and gate tasks:
@@ -29,7 +29,7 @@ Preserve the core task format and place the suite marker as the first token of t
 
 `[TDD]`, `[BDD]`, `[ATDD]`, and `[GATE]` do not replace or alter core `T###`, `[P]`, or `[US1]` identifiers. `[GATE]` is allowed only for non-product validation tasks and MUST state the protected suite or evidence destination.
 
-The label identifies primary suite ownership. If an artifact supports multiple evidence roles, create one task under its owning-suite label and record the other mappings in the description and traceability matrix. Do not generate equivalent tasks or artifacts solely to satisfy multiple labels.
+The label identifies primary suite ownership. If an artifact supports multiple evidence roles, create one task under its owning-suite label, record the roles in its registry entry, and reference the artifact ID from each covered source. Do not generate equivalent tasks or artifacts solely to satisfy multiple labels.
 
 Preserve core Spec Kit story labels such as `[US1]`, `[US2]`, and `[US3]`. Use the same story identifier in suite-owned artifact IDs such as `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`. Do not introduce a parallel `US-001` alias.
 
@@ -40,7 +40,7 @@ Each user story MUST include at least:
 - one `[TDD]` edge/error/boundary test task;
 - a red-state run before the production change for each behavior slice, with evidence retained in task/PR/CI output or an audit-required report;
 - a green-state run immediately after the corresponding minimal production change;
-- a `[GATE]` task updating `specs/<feature>/test-traceability.md` before implementation and after execution.
+- a `[GATE]` task updating the traceability registry and coverage map before implementation and registry/gate results after execution.
 
 {CORE_TEMPLATE}
 

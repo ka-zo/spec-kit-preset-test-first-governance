@@ -4,7 +4,10 @@ Apply these checks in addition to the core cross-artifact analysis.
 
 ## Additional Critical Findings
 Report a CRITICAL issue if any of the following are true:
-- `specs/<feature>/test-traceability.md` is missing, still contains unresolved required placeholders, or is stale relative to spec.md, plan.md, tasks.md, or execution evidence.
+- `specs/<feature>/test-traceability.md` is missing, lacks any required normalized section, still contains unresolved required placeholders, or is stale relative to spec.md, plan.md, tasks.md, or execution evidence.
+- Within the traceability artifact, artifact commands, statuses, or evidence paths are copied into Source Coverage Map rows instead of being stored once in the Evidence Artifact Registry.
+- A source or applicability row references an artifact ID missing from the registry, or an executable artifact has more than one registry entry.
+- A required quality gate lacks exactly one current entry in Quality Gate Results.
 - Any story heading, source reference, or task label violates Spec Kit's `User Story 1` / `US1` / `[US1]` convention.
 - A parallel alias such as `US-001` is introduced for a core `US1` story.
 - Any necessary preset-specific test, scenario, Gherkin tag, or binding ID is inconsistent with its core source ID.
@@ -32,11 +35,10 @@ Report a CRITICAL issue if any of the following are true:
 Add these tables to the report:
 
 ### Test Evidence Coverage Summary
-| Practice | Applicability | Mapped Artifact IDs | Owning Suites | Execution Commands | Blocking Gaps |
-|----------|---------------|---------------------|---------------|--------------------|---------------|
-| TDD | Required | [ids] | [owners] | [commands] | [gaps] |
-| BDD | [Required/N/A] | [ids] | [owners] | [commands] | [gaps] |
-| ATDD | [Required/N/A] | [ids] | [owners] | [commands] | [gaps] |
+| Artifact ID | Owning Suite | Evidence Roles | Status | Evidence | Blocking Gaps |
+|-------------|--------------|----------------|--------|----------|---------------|
+| TDD-US1-001 | TDD | TDD | [status] | [path] | [gaps] |
+| ATDD-US1-001 | ATDD | ATDD, BDD | [status] | [path] | [gaps] |
 
 ### Quality Gate Decisions
 | Gate | Applicability | Threshold/Policy | Evidence Destination | Exception | Gap? |
@@ -46,7 +48,7 @@ Add these tables to the report:
 | Security | [Required/N/A] | [severity policy] | [location] | [none/details] | [yes/no] |
 | Runtime Smoke | [Required/N/A] | [pass policy] | [location] | [none/details] | [yes/no] |
 
-### Requirement-to-Test Traceability
-| Source ID | TDD | BDD | ATDD | Matrix Status | Evidence | Gap? |
-|-----------|-----|-----|------|---------------|----------|------|
-| FR-001 | [ids] | [ids] | [ids] | [status] | [paths] | [yes/no] |
+### Source Coverage Summary
+| Source ID | Source Type | Artifact IDs | Coverage Intent | Gap? |
+|-----------|-------------|--------------|-----------------|------|
+| FR-001 | Functional Requirement | [ids] | [intent] | [yes/no] |

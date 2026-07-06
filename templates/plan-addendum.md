@@ -58,12 +58,14 @@ A `Required` decision does not require a scenario owned by that practice. When o
 Before planning completes:
 1. Resolve the template named `test-traceability-template` through Spec Kit's template resolver.
 2. Create `specs/<feature>/test-traceability.md` from the resolved content.
-3. Populate every known FR/SC/US/EC, BDD/ATDD applicability decision, planned artifact ID, owning suite, path, and execution command.
-4. Use `Planned` for evidence not yet executed; do not invent Red/Green results during planning.
+3. Populate the Evidence Artifact Registry with each planned artifact ID, owning suite, evidence roles, path, and execution command.
+4. Populate the Source Coverage Map with every known FR/SC/US/EC and its artifact IDs.
+5. Populate BDD/ATDD applicability decisions and Quality Gate Results without copying artifact execution fields into source mappings.
+6. Use `Planned` for required evidence not yet executed; do not invent Red/Green results during planning.
 
 All populated IDs MUST reuse core forms where available (`US1`, `FR-001`, and `SC-001`) and use preset-specific forms only where necessary (`EC-001`, `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`).
 
-If the file already exists, update it in place and preserve valid execution history.
+If the file already exists, update it in place and preserve valid registry and gate execution history.
 
 ### Test Tooling and Gate Decisions
 | Practice/Gate | Applicability | Tool and Required Command | Threshold | Evidence Retention | Rationale |

@@ -10,6 +10,8 @@
 - Require traceability to record every evidence role and prohibit duplicate scenarios, bindings, tasks, commands, or reports created only to satisfy practice labels.
 - Move each scenario-specific Gherkin ID tag directly above its `Scenario` or `Scenario Outline` so it identifies exactly one scenario.
 - Keep reusable suite, user-story, requirement, success-criterion, and edge-case tags at feature level where Gherkin inheritance applies.
+- Normalize feature traceability into an evidence artifact registry, a source-to-artifact coverage map, BDD/ATDD applicability decisions, and separate quality-gate results.
+- Store commands, execution status, and evidence once per artifact or gate instead of repeating mutable results across source-mapping rows.
 
 ## 1.1.0 - 2026-07-06
 

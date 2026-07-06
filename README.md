@@ -33,7 +33,7 @@ TDD, BDD, and ATDD are complementary development practices, not mutually exclusi
 
 TDD remains mandatory for production logic. Each user story MUST explicitly mark BDD and ATDD as `Required` or `N/A`. `N/A` is permitted only for technical-only work with no corresponding observable behavior or stakeholder acceptance boundary; it requires a concrete rationale and alternative TDD or quality-gate evidence.
 
-A `Required` BDD or ATDD decision creates an evidence obligation, not a quota for a separately owned artifact. One Gherkin scenario MAY satisfy both practices when its examples and assertions fully cover both the user-visible behavior and the stakeholder-facing acceptance outcome. The scenario keeps one owning suite, and the traceability matrix records both evidence roles. Separate scenarios are required only when the two practices need materially different examples, execution boundaries, or assertions.
+A `Required` BDD or ATDD decision creates an evidence obligation, not a quota for a separately owned artifact. One Gherkin scenario MAY satisfy both practices when its examples and assertions fully cover both the user-visible behavior and the stakeholder-facing acceptance outcome. The scenario keeps one owning suite, and the traceability artifact records both evidence roles. Separate scenarios are required only when the two practices need materially different examples, execution boundaries, or assertions.
 
 ## Identifier Contract
 
@@ -113,7 +113,14 @@ Each feature uses one canonical traceability artifact:
 specs/<feature>/test-traceability.md
 ```
 
-`/speckit.plan` resolves the preset's `test-traceability-template` and creates the file. `/speckit.tasks` adds explicit update tasks, `/speckit.implement` records Red/Green and gate evidence, and `/speckit.analyze` treats a missing or stale matrix as a blocking issue.
+The file separates stable coverage relationships from mutable execution results:
+
+- the **Evidence Artifact Registry** owns each test/scenario path, command, status, and evidence location;
+- the **Source Coverage Map** links FR/SC/US/EC identifiers to artifact IDs without copying execution state;
+- **BDD and ATDD Applicability** records `Required` and justified `N/A` decisions;
+- **Quality Gate Results** owns gate commands, policies, statuses, and evidence.
+
+`/speckit.plan` resolves the preset's `test-traceability-template` and creates the file. `/speckit.tasks` adds explicit update tasks, `/speckit.implement` records Red/Green and gate evidence in their owning sections, and `/speckit.analyze` treats missing, stale, duplicated, or dangling traceability data as blocking.
 
 ## Quality-Gate Policy
 

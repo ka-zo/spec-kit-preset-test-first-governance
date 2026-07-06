@@ -16,5 +16,5 @@ Include these categories when applicable:
 - scenario-specific ID placement directly above one `Scenario` or `Scenario Outline`
 - risk-based coverage, linting, formatting, and applicable static-analysis/security/runtime gates
 - gate applicability, threshold exceptions, blocking behavior, and evidence retention
-- lifecycle completeness of `specs/<feature>/test-traceability.md`
+- lifecycle completeness and normalized registry/map/gate structure of `specs/<feature>/test-traceability.md`
 - directory ownership for applicable `tests/tdd/`, `tests/bdd/`, and `tests/atdd/` suites

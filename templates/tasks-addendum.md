@@ -15,7 +15,7 @@ Every task MUST keep the core Spec Kit checkbox, task ID, parallel marker, and `
 Rules:
 - `[TDD]`, `[BDD]`, `[ATDD]`, and `[GATE]` extend the task description; they do not replace or alter core `T###`, `[P]`, or `[US1]` identifiers.
 - The suite label identifies the artifact's primary owner; it does not claim that TDD, BDD, and ATDD are mutually exclusive test types.
-- If one artifact supplies multiple evidence roles, use its owning-suite label and name the additional mappings in the task description and traceability matrix.
+- If one artifact supplies multiple evidence roles, use its owning-suite label and record the roles once in the Evidence Artifact Registry plus the relevant source relationships in the Source Coverage Map.
 - Never create duplicate test tasks solely to represent the same evidence under another suite label.
 - A `Required` BDD or ATDD role does not require a task with that suite label when an artifact owned by another suite fully provides the required evidence.
 - `[TDD]` is required for unit, component, integration, contract, property, boundary, negative, mutation, or implementation-level test tasks.
@@ -28,7 +28,7 @@ Rules:
 Within each user story phase:
 
 1. **Scenario specification** — create the minimum non-duplicative set of scenarios that covers all required ATDD acceptance and BDD behavior evidence roles before production implementation begins.
-2. **Traceability planning update** — add planned artifact IDs, paths, commands, and behavior slices to `specs/<feature>/test-traceability.md`.
+2. **Traceability planning update** — add artifact definitions to the Evidence Artifact Registry and source relationships to the Source Coverage Map in `specs/<feature>/test-traceability.md`.
 3. **Incremental behavior cycles** — divide the story into the smallest meaningful slices that can be independently verified. For each slice, tasks MUST appear in this order:
    1. **Executable evidence** — add only the ATDD/BDD bindings and TDD tests needed for the current slice.
    2. **Expected failure checkpoint** — run the new evidence, confirm it fails for the intended missing behavior, and record `Red`.
@@ -37,7 +37,7 @@ Within each user story phase:
    5. **Refactor** — improve the design and rerun the relevant evidence while it remains green.
 4. **Repeat** — complete the cycle before adding executable evidence for the next slice; do not accumulate all failing tests for the story before any production implementation.
 5. **Story validation checkpoint** — after all slices are green, run TDD and all executable evidence mapped to required BDD/ATDD roles, plus coverage, linting, formatting, and every gate marked `Required`.
-6. **Traceability result update** — record final `Green`, `Blocked`, or approved `N/A` evidence.
+6. **Traceability result update** — record final artifact results in the registry and gate results in Quality Gate Results.
 
 Shared bindings, fixtures, or helpers MUST be created once under `tests/support/` (or the selected equivalent) and referenced by each consuming suite.
 
@@ -50,31 +50,31 @@ Use the applicable lines from this example, adapted to the selected stack. The e
 ### Tests for User Story 1 - [Title] *(MANDATORY: write before implementation)*
 - [ ] T010 [P] [US1] [ATDD] Create Gherkin acceptance scenario @ATDD-US1-001 in tests/atdd/features/acceptance/[feature].feature
 - [ ] T011 [P] [US1] [BDD] Create Gherkin behavior scenario @BDD-US1-001 in tests/bdd/features/user-stories/[feature].feature
-- [ ] T012 [US1] [GATE] Add planned artifact IDs, paths, commands, and behavior slices to specs/<feature>/test-traceability.md
+- [ ] T012 [US1] [GATE] Add planned artifacts to the registry and source relationships to the coverage map in specs/<feature>/test-traceability.md
 
 ### Behavior Slice 1 - [Happy-path capability]
 - [ ] T013 [P] [US1] [ATDD] Implement failing acceptance binding for @ATDD-US1-001 in tests/atdd/steps/[feature]_steps.[ext]
 - [ ] T014 [P] [US1] [TDD] Create failing test TDD-US1-001 for [happy-path behavior] in tests/tdd/unit/test_[name].[ext]
-- [ ] T015 [US1] [ATDD] Run @ATDD-US1-001 and record its expected Red result in task/PR/CI output and the matrix
-- [ ] T016 [US1] [TDD] Run TDD-US1-001 and record its expected Red result in task/PR/CI output and the matrix
+- [ ] T015 [US1] [ATDD] Run @ATDD-US1-001 and record its expected Red result in task/PR/CI output and its registry entry
+- [ ] T016 [US1] [TDD] Run TDD-US1-001 and record its expected Red result in task/PR/CI output and its registry entry
 - [ ] T017 [US1] Implement the minimal production change for [happy-path capability] in src/[path]
-- [ ] T018 [US1] [ATDD] Rerun @ATDD-US1-001 and record its Green result in task/PR/CI output and the matrix
-- [ ] T019 [US1] [TDD] Rerun TDD-US1-001 and record its Green result in task/PR/CI output and the matrix
+- [ ] T018 [US1] [ATDD] Rerun @ATDD-US1-001 and record its Green result in task/PR/CI output and its registry entry
+- [ ] T019 [US1] [TDD] Rerun TDD-US1-001 and record its Green result in task/PR/CI output and its registry entry
 - [ ] T020 [US1] Refactor [module] while keeping the slice 1 evidence green in src/[path]
 
 ### Behavior Slice 2 - [Boundary or error behavior]
 - [ ] T021 [P] [US1] [BDD] Implement failing behavior binding for @BDD-US1-001 in tests/bdd/steps/[feature]_steps.[ext]
 - [ ] T022 [P] [US1] [TDD] Create failing test TDD-US1-002 for [failure mode] in tests/tdd/negative/test_[name].[ext]
-- [ ] T023 [US1] [BDD] Run @BDD-US1-001 and record its expected Red result in task/PR/CI output and the matrix
-- [ ] T024 [US1] [TDD] Run TDD-US1-002 and record its expected Red result in task/PR/CI output and the matrix
+- [ ] T023 [US1] [BDD] Run @BDD-US1-001 and record its expected Red result in task/PR/CI output and its registry entry
+- [ ] T024 [US1] [TDD] Run TDD-US1-002 and record its expected Red result in task/PR/CI output and its registry entry
 - [ ] T025 [US1] Implement the minimal production change for [boundary or error behavior] in src/[path]
-- [ ] T026 [US1] [BDD] Rerun @BDD-US1-001 and record its Green result in task/PR/CI output and the matrix
-- [ ] T027 [US1] [TDD] Rerun TDD-US1-002 and record its Green result in task/PR/CI output and the matrix
+- [ ] T026 [US1] [BDD] Rerun @BDD-US1-001 and record its Green result in task/PR/CI output and its registry entry
+- [ ] T027 [US1] [TDD] Rerun TDD-US1-002 and record its Green result in task/PR/CI output and its registry entry
 - [ ] T028 [US1] Refactor [module] while keeping the slice 2 evidence green in src/[path]
 
 ### User Story 1 Completion
 - [ ] T029 [US1] [GATE] Run TDD, all evidence mapped to required BDD/ATDD roles, coverage, linting, formatting, and all gates marked Required; retain evidence per the plan
-- [ ] T030 [US1] [GATE] Update specs/<feature>/test-traceability.md with final statuses and evidence paths
+- [ ] T030 [US1] [GATE] Update artifact registry and Quality Gate Results entries with final statuses and evidence paths
 ```
 
 ### Global Quality Gate Tasks
@@ -84,4 +84,4 @@ The final phase MUST include:
 - `[GATE]` linting and formatting checks for source and tests.
 - `[GATE]` required static analysis or type checking for source and tests.
 - `[GATE]` required security and runtime smoke validation where applicable.
-- `[GATE]` traceability review proving all FR/SC/US/EC IDs map to current statuses and execution evidence.
+- `[GATE]` traceability review proving all FR/SC/US/EC IDs map to registered artifacts whose current statuses and evidence are stored once in their registry entries.

@@ -22,4 +22,5 @@ If the constitution omits these principles, add them or report a blocking govern
 - [ ] Constitution requires each scenario-specific ID to be attached to exactly one scenario, never inherited from a feature
 - [ ] Constitution states that quality gates are mandatory and blocking
 - [ ] Constitution requires explicit gate applicability, threshold exceptions, and evidence-retention policy
-- [ ] Constitution defines `specs/<feature>/test-traceability.md` as the canonical feature matrix
+- [ ] Constitution defines `specs/<feature>/test-traceability.md` as the canonical normalized traceability artifact
+- [ ] Constitution separates artifact execution state, source mappings, applicability decisions, and quality-gate results

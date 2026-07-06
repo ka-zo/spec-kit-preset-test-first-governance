@@ -69,5 +69,5 @@ Define the implementation-level tests required before code is written.
 - Every `Required` decision MUST map to at least one scenario carrying the corresponding evidence role; the scenario MAY be owned by another suite.
 - Every Gherkin scenario MUST have suite, user story, and requirement tags directly or by feature-level inheritance.
 - Every scenario-specific ID tag MUST appear immediately above exactly one `Scenario` or `Scenario Outline`, never at feature level.
-- All expected error sources, edge cases, and boundary conditions MUST be represented in the matrix.
+- All expected error sources, edge cases, and boundary conditions MUST appear in the Source Coverage Map.
 - Every executable artifact MUST have one owning suite, with all additional evidence roles represented through traceability rather than duplicated tests.
