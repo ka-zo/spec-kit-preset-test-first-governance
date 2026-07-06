@@ -40,10 +40,26 @@ TDD remains mandatory for production logic. Each user story MUST explicitly mark
 
 Identifiers are stable once published. Never renumber or reuse them when artifacts move or requirements change.
 
-## Install Locally During Development
+## Installation
+
+This preset requires GitHub Spec Kit `>=0.8.0`.
+
+After the preset is published to an install-enabled catalog:
 
 ```bash
-specify preset add --dev ./test-first-governance --priority 5
+specify preset add test-first-governance --priority 5
+```
+
+To install a tagged release directly:
+
+```bash
+specify preset add --from "https://github.com/ka-zo/spec-kit-preset-test-first-governance/archive/refs/tags/v1.0.0.zip" --priority 5
+```
+
+For local development, run the following commands from this repository root:
+
+```bash
+specify preset add --dev . --priority 5
 specify preset resolve spec-template
 specify preset resolve tasks-template
 specify preset info test-first-governance
@@ -100,33 +116,6 @@ Every project declares its gate commands, applicability, thresholds, and evidenc
 
 Runtime smoke, security, and tool-specific static-analysis gates are required when applicable to the stack and risk surface. A gate may be `N/A` only with a concrete technical rationale. Red-state and final results should normally be retained as reproducible CI output or CI artifacts, not committed per-story report files.
 
-## Community Catalog Entry Example
+## License
 
-```json
-"test-first-governance": {
-  "name": "Test-First Governance",
-  "id": "test-first-governance",
-  "version": "1.0.0",
-  "description": "Governs TDD with applicable BDD and ATDD Gherkin scenarios, explicit suite ownership, traceability, and risk-based quality gates.",
-  "author": "Your Name or Organization",
-  "repository": "https://github.com/your-org/spec-kit-preset-test-first-governance",
-  "download_url": "https://github.com/your-org/spec-kit-preset-test-first-governance/archive/refs/tags/v1.0.0.zip",
-  "homepage": "https://github.com/your-org/spec-kit-preset-test-first-governance",
-  "documentation": "https://github.com/your-org/spec-kit-preset-test-first-governance/blob/main/README.md",
-  "license": "MIT",
-  "requires": { "speckit_version": ">=0.8.0" },
-  "provides": { "templates": 7, "commands": 7 },
-  "tags": ["tdd", "bdd", "atdd", "gherkin", "quality-gates", "traceability", "test-first"],
-  "created_at": "2026-07-05T00:00:00Z",
-  "updated_at": "2026-07-05T00:00:00Z"
-}
-```
-
-## Release Checklist
-
-- [ ] Update `preset.yml` version
-- [ ] Update `CHANGELOG.md`
-- [ ] Create a GitHub release/tag
-- [ ] Test with `specify preset add --dev ./test-first-governance`
-- [ ] Verify `specify preset resolve` for all overridden templates/commands
-- [ ] Submit catalog entry and docs row if publishing to the community catalog
+This preset is available under the [MIT License](LICENSE).
