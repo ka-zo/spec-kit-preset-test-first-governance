@@ -11,5 +11,5 @@ Include these categories when applicable:
 - ATDD applicability, acceptance completeness, and executable mirroring
 - rationale and alternative evidence for BDD/ATDD `N/A` decisions
 - Coverage, linting, static analysis, and runtime smoke gates
-- Requirement-to-test traceability
+- lifecycle completeness of `specs/<feature>/test-traceability.md`
 - Directory ownership: `tests/tdd/`, `tests/bdd/`, `tests/atdd/`, `tests/reports/`

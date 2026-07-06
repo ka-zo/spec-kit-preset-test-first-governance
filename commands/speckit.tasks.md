@@ -11,10 +11,12 @@ For each user story, create tasks in this exact sequence:
 2. Required `[BDD]` Gherkin behavior scenarios.
 3. `[ATDD]` and `[BDD]` executable step bindings/support fixtures.
 4. `[TDD]` failing unit/component/integration/contract/property/negative tests.
-5. `[TDD]`, `[BDD]`, `[ATDD]` red-state execution/report tasks proving tests fail for expected reasons.
-6. Production implementation tasks.
-7. Refactor tasks.
-8. `[GATE]` validation tasks for full test suite, coverage, linting, static analysis, runtime smoke, and traceability.
+5. `[GATE]` update `specs/<feature>/test-traceability.md` with planned artifact IDs, paths, and commands.
+6. `[TDD]`, `[BDD]`, `[ATDD]` red-state execution/report tasks proving tests fail for expected reasons and updating matrix status to `Red`.
+7. Production implementation tasks.
+8. Refactor tasks.
+9. `[GATE]` validation tasks for the full test suite, coverage, linting, static analysis, and runtime smoke.
+10. `[GATE]` update matrix results to `Green`, `Blocked`, or approved `N/A` and perform the final traceability review.
 
 ## Mandatory Task Labels
 Use this extended format for all test and gate tasks:
@@ -35,7 +37,7 @@ Each user story MUST include at least:
 - one `[TDD]` edge/error/boundary test task;
 - red-state run tasks before implementation;
 - green-state run tasks after implementation;
-- traceability update task.
+- a `[GATE]` task updating `specs/<feature>/test-traceability.md` before implementation and after execution.
 
 {CORE_TEMPLATE}
 
@@ -46,3 +48,4 @@ Include in the task generation completion report:
 - List of Gherkin feature files planned for BDD and ATDD
 - List of BDD/ATDD `N/A` decisions with rationale and alternative evidence
 - List of coverage/lint/static/runtime commands and report paths
+- Confirmation that traceability creation and update tasks use `specs/<feature>/test-traceability.md`

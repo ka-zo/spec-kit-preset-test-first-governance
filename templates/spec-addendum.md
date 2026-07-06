@@ -58,7 +58,7 @@ Define the implementation-level tests required before code is written.
 | TDD-US1-002 | EC-001 | Negative/Boundary | tests/tdd/unit/test_[name].[ext] | [edge/error handling] | [missing validation / wrong error] |
 
 ### Test Traceability Requirements
-Before `/speckit.plan` is considered complete:
+`/speckit.plan` MUST create `specs/<feature>/test-traceability.md` from the resolved `test-traceability-template`. Before planning is considered complete:
 - Every `FR-###` MUST have at least one `TDD`, `BDD`, or `ATDD` test mapping.
 - Every user story MUST record a `Required` or justified `N/A` decision for BDD and ATDD.
 - Every `Required` decision MUST map to at least one corresponding scenario.

@@ -52,6 +52,15 @@ For every user story, carry forward the specification's BDD and ATDD decisions:
 
 The plan MUST NOT turn an approved `N/A` into ceremonial scenarios. If planning reveals observable behavior or a stakeholder acceptance boundary, change the decision to `Required` and update the specification.
 
+### Traceability Materialization
+Before planning completes:
+1. Resolve the template named `test-traceability-template` through Spec Kit's template resolver.
+2. Create `specs/<feature>/test-traceability.md` from the resolved content.
+3. Populate every known FR/SC/US/EC, BDD/ATDD applicability decision, planned artifact ID, owning suite, path, and execution command.
+4. Use `Planned` for evidence not yet executed; do not invent Red/Green results during planning.
+
+If the file already exists, update it in place and preserve valid execution history.
+
 ### Test Tooling Decisions
 | Suite/Gate | Tool | Scope | Required Command | Output Path | Blocking? |
 |------------|------|-------|------------------|-------------|-----------|

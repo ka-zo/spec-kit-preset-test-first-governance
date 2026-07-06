@@ -8,6 +8,8 @@
 - Allow one artifact to support multiple evidence roles while prohibiting label-driven duplication of tests, scenarios, bindings, and shared support code.
 - Make BDD and ATDD applicability explicit instead of requiring both indiscriminately for every story.
 - Permit governed `N/A` decisions for technical-only work when backed by a concrete rationale and alternative TDD or quality-gate evidence.
+- Materialize the traceability template at `specs/<feature>/test-traceability.md` during planning.
+- Require task-generation, implementation, and analysis workflows to maintain and validate traceability statuses and execution evidence.
 
 ## 1.0.0 - 2026-07-05
 

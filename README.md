@@ -55,6 +55,16 @@ tests/
 
 Platform-specific conventions are allowed only when suite ownership remains visible. A BDD or ATDD directory is required when that practice has executable artifacts; an entirely non-applicable suite need not create an empty directory. Shared fixtures, helpers, and runner adapters belong under `tests/support/` (or an equivalent shared path) instead of being duplicated across suites.
 
+## Traceability Lifecycle
+
+Each feature uses one canonical traceability artifact:
+
+```text
+specs/<feature>/test-traceability.md
+```
+
+`/speckit.plan` resolves the preset's `test-traceability-template` and creates the file. `/speckit.tasks` adds explicit update tasks, `/speckit.implement` records Red/Green and gate evidence, and `/speckit.analyze` treats a missing or stale matrix as a blocking issue.
+
 ## Community Catalog Entry Example
 
 ```json

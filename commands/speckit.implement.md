@@ -5,9 +5,11 @@ Apply these execution rules in addition to the core implementation workflow.
 ## Critical Execution Rules
 - Do not write production code for a user story until its TDD and all `Required` ATDD/BDD test tasks exist.
 - Run the new TDD and all `Required` ATDD/BDD tests before implementation and confirm they fail for the expected reason. Record red-state evidence under `tests/reports/{suite}/`.
+- After each expected failure, update the matching row in `specs/<feature>/test-traceability.md` to `Red` with its evidence path.
 - Implement the smallest production change needed to pass the failing tests.
 - Refactor only after tests pass, and rerun the relevant suites after refactoring.
 - Run full TDD, all required BDD/ATDD suites, coverage, linting, static analysis, and runtime smoke gates before marking the story complete.
+- Update each executed artifact or gate to `Green` or `Blocked`; retain `N/A` only with its approved rationale and alternative evidence.
 - Mark tasks `[X]` only after the relevant tests/gates have been executed and evidence paths exist.
 
 ## Failure Handling
@@ -29,4 +31,4 @@ If a test fails for an unexpected reason, stop the current story implementation 
 - [ ] Linting/formatting has zero blocking findings
 - [ ] Static analysis/type checking has zero blocking findings
 - [ ] Runtime smoke checks pass
-- [ ] Traceability matrix has no missing FR/SC/US/EC coverage
+- [ ] `specs/<feature>/test-traceability.md` has no missing FR/SC/US/EC coverage or stale statuses
