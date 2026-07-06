@@ -62,12 +62,12 @@ Define the implementation-level tests required before code is written.
 | TDD-US1-001 | FR-001, US1 | Unit | tests/tdd/unit/test_[name].[ext] | [what it verifies] | [missing implementation / failing assertion] |
 | TDD-US1-002 | EC-001 | Negative/Boundary | tests/tdd/unit/test_[name].[ext] | [edge/error handling] | [missing validation / wrong error] |
 
-### Test Traceability Requirements
-`/speckit.plan` MUST create `specs/<feature>/test-traceability.md` from the resolved `test-traceability-template`. Before planning is considered complete:
+### Specification Traceability Inputs
+Before specification is considered complete:
 - Every `FR-###` MUST have at least one `TDD`, `BDD`, or `ATDD` test mapping.
 - Every user story MUST record a `Required` or justified `N/A` decision for BDD and ATDD.
 - Every `Required` decision MUST map to at least one scenario carrying the corresponding evidence role; the scenario MAY be owned by another suite.
 - Every Gherkin scenario MUST have suite, user story, and requirement tags directly or by feature-level inheritance.
 - Every scenario-specific ID tag MUST appear immediately above exactly one `Scenario` or `Scenario Outline`, never at feature level.
-- All expected error sources, edge cases, and boundary conditions MUST appear in the Source Coverage Map.
+- All expected error sources, edge cases, and boundary conditions MUST have planned evidence.
 - Every executable artifact MUST have one owning suite, with all additional evidence roles represented through traceability rather than duplicated tests.

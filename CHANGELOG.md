@@ -13,6 +13,7 @@
 - Normalize feature traceability into an evidence artifact registry, a source-to-artifact coverage map, BDD/ATDD applicability decisions, and separate quality-gate results.
 - Store commands, execution status, and evidence once per artifact or gate instead of repeating mutable results across source-mapping rows.
 - Reorganize and streamline the README around installation, workflow, governed behavior, generated artifacts, and CI enforcement while retaining the Motivation and Approach sections.
+- Align specification and planning addenda so specification defines traceability inputs while planning owns traceability materialization, and normalize generated template text to avoid corrupted tree/arrows.
 
 ## 1.1.0 - 2026-07-06
 

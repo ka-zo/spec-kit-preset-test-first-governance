@@ -1,4 +1,3 @@
-
 ---
 
 ## Test-First Architecture & Quality Plan *(mandatory)*
@@ -8,35 +7,35 @@ The selected project structure MUST expose clear ownership for all test artifact
 
 ```text
 tests/
-├── tdd/
-│   ├── unit/
-│   ├── component/
-│   ├── integration/
-│   ├── contract/
-│   ├── property/
-│   ├── negative/
-│   └── fixtures/
-├── bdd/
-│   ├── features/
-│   │   ├── user-stories/
-│   │   ├── business-rules/
-│   │   └── edge-cases/
-│   ├── steps/
-│   └── support/
-├── atdd/
-│   ├── features/
-│   │   ├── acceptance/
-│   │   └── regression/
-│   ├── steps/
-│   └── support/
-├── support/
-│   ├── fixtures/
-│   ├── helpers/
-│   └── runner-adapters/
-└── [reports/]  # only when versioned report retention is required
-    ├── tdd/
-    ├── bdd/
-    └── atdd/
+|-- tdd/
+|   |-- unit/
+|   |-- component/
+|   |-- integration/
+|   |-- contract/
+|   |-- property/
+|   |-- negative/
+|   `-- fixtures/
+|-- bdd/
+|   |-- features/
+|   |   |-- user-stories/
+|   |   |-- business-rules/
+|   |   `-- edge-cases/
+|   |-- steps/
+|   `-- support/
+|-- atdd/
+|   |-- features/
+|   |   |-- acceptance/
+|   |   `-- regression/
+|   |-- steps/
+|   `-- support/
+|-- support/
+|   |-- fixtures/
+|   |-- helpers/
+|   `-- runner-adapters/
+`-- [reports/]  # only when versioned report retention is required
+    |-- tdd/
+    |-- bdd/
+    `-- atdd/
 ```
 
 If the repository uses a platform-specific convention, keep the platform convention but preserve visible `tdd`, `bdd`, and `atdd` ownership when those suites produce artifacts. Do not create empty BDD or ATDD directories when the practice is entirely `N/A`. Create a reports directory only when the evidence-retention policy requires versioned local reports.
@@ -102,5 +101,5 @@ For each user story:
 4. Run that evidence, confirm it fails for the intended missing behavior, and record `Red`.
 5. Implement the smallest production change needed to make the slice pass.
 6. Run the slice evidence, record `Green`, and refactor while keeping the relevant suites green.
-7. Repeat steps 3–6 for the next slice instead of accumulating all failing tests before any production code is written.
+7. Repeat steps 3-6 for the next slice instead of accumulating all failing tests before any production code is written.
 8. At story completion, run the full TDD suite and all executable evidence mapped to required BDD/ATDD roles, plus coverage, linting, formatting, and every gate marked `Required`.
