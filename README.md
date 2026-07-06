@@ -55,7 +55,7 @@ specify preset add test-first-governance --priority 5
 To install a tagged release directly:
 
 ```bash
-specify preset add --from "https://github.com/ka-zo/spec-kit-preset-test-first-governance/archive/refs/tags/v1.0.0.zip" --priority 5
+specify preset add --from "https://github.com/ka-zo/spec-kit-preset-test-first-governance/archive/refs/tags/v<version number>.zip" --priority 5
 ```
 
 For local development, run the following commands from this repository root:
