@@ -13,6 +13,7 @@ Include these categories when applicable:
 - non-duplicative BDD/ATDD evidence-role mappings and one owning suite per shared scenario
 - reuse of core story, requirement, success-criterion, and task identifiers
 - minimal, stable edge-case, scenario, test, and binding identifiers where core has no equivalent
+- scenario-specific ID placement directly above one `Scenario` or `Scenario Outline`
 - risk-based coverage, linting, formatting, and applicable static-analysis/security/runtime gates
 - gate applicability, threshold exceptions, blocking behavior, and evidence retention
 - lifecycle completeness of `specs/<feature>/test-traceability.md`

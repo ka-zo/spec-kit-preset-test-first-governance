@@ -16,6 +16,7 @@ Report a CRITICAL issue if any of the following are true:
 - Separate scenarios, bindings, tasks, commands, or reports exist only because both BDD and ATDD are `Required`, although one artifact fully covers both intents.
 - Any BDD or ATDD `N/A` lacks a concrete rationale and alternative evidence, or conflicts with observable behavior or a stakeholder acceptance boundary.
 - Any BDD or ATDD Gherkin scenario lacks stable tags for suite, user story, and requirement/success/edge-case ID.
+- Any scenario-specific ID tag is placed at feature level, inherited by multiple scenarios, or attached to more than one `Scenario` or `Scenario Outline`.
 - Any Gherkin scenario lacks an executable test binding or planned binding task.
 - Any implementation task appears before required test tasks for the same story.
 - Any FR/SC/EC has zero mapped test artifacts.

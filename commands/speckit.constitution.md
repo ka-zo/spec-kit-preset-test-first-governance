@@ -19,6 +19,7 @@ If the constitution omits these principles, add them or report a blocking govern
 - [ ] Constitution permits one scenario to satisfy both BDD and ATDD roles when it fully covers both intents
 - [ ] Constitution reuses core `US1`, `FR-001`, `SC-001`, and `T###` identifiers
 - [ ] Constitution limits new IDs to `EC-001` and `<SUITE>-US1-001` forms
+- [ ] Constitution requires each scenario-specific ID to be attached to exactly one scenario, never inherited from a feature
 - [ ] Constitution states that quality gates are mandatory and blocking
 - [ ] Constitution requires explicit gate applicability, threshold exceptions, and evidence-retention policy
 - [ ] Constitution defines `specs/<feature>/test-traceability.md` as the canonical feature matrix

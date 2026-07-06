@@ -1,4 +1,4 @@
-@[BDD_OR_ATDD] @US1 @FR-001 @SC-001 @[BDD_OR_ATDD]-US1-001
+@[BDD_OR_ATDD] @US1 @FR-001 @SC-001
 Feature: [Capability or behavior]
   As a [actor]
   I want [capability]
@@ -7,6 +7,7 @@ Feature: [Capability or behavior]
   Background:
     Given [shared context]
 
+  @[BDD_OR_ATDD]-US1-001
   Scenario: [Concrete example]
     Given [initial state]
     When [action]

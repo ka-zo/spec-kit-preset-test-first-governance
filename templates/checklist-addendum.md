@@ -36,6 +36,7 @@
 - [ ] `EC-001` is introduced only where an edge case needs traceability
 - [ ] Test/scenario IDs use minimal `<SUITE>-US1-001` forms
 - [ ] Gherkin tags, executable bindings, and traceability rows reuse identifiers verbatim
+- [ ] Every scenario-specific ID tag appears immediately above exactly one `Scenario` or `Scenario Outline`, not above `Feature`
 - [ ] Published IDs have not been shortened, renumbered, or reused
 - [ ] Every FR/SC/US/EC maps to one or more TDD, BDD, or ATDD artifacts
 - [ ] Every Gherkin scenario ID maps to an executable test or step binding

@@ -43,6 +43,7 @@ A `Required` BDD or ATDD decision creates an evidence obligation, not a quota fo
 - Gherkin tags reuse source and scenario IDs verbatim, for example `@BDD @US1 @FR-001 @BDD-US1-001`.
 
 Identifiers are stable once published. Never renumber or reuse them when artifacts move or requirements change.
+Place each unique scenario ID tag immediately above its `Scenario` or `Scenario Outline`. Reusable suite, story, requirement, success-criterion, and edge-case tags MAY be placed above `Feature` and inherited by its scenarios.
 
 ## Installation
 

@@ -8,6 +8,8 @@
 - Define BDD and ATDD `Required` decisions as evidence obligations rather than requirements for separate suite-owned artifacts.
 - Allow one Gherkin scenario to satisfy both BDD and ATDD when it fully covers both behavior and stakeholder-acceptance intent, while retaining exactly one owning suite.
 - Require traceability to record every evidence role and prohibit duplicate scenarios, bindings, tasks, commands, or reports created only to satisfy practice labels.
+- Move each scenario-specific Gherkin ID tag directly above its `Scenario` or `Scenario Outline` so it identifies exactly one scenario.
+- Keep reusable suite, user-story, requirement, success-criterion, and edge-case tags at feature level where Gherkin inheritance applies.
 
 ## 1.1.0 - 2026-07-06
 

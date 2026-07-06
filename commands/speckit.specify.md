@@ -18,9 +18,10 @@ Apply these requirements in addition to the core specification workflow.
 Use stable IDs and Gherkin tags:
 - Reuse core identifiers: `US1`, `FR-001`, and `SC-001`.
 - Add `EC-001` only for edge-case traceability because core has no edge-case ID.
-- ATDD: `@ATDD @US1 @FR-001 @SC-001 @ATDD-US1-001`
-- BDD: `@BDD @US1 @FR-001 @BDD-US1-001`
+- ATDD feature-level tags: `@ATDD @US1 @FR-001 @SC-001`; scenario-level ID: `@ATDD-US1-001`.
+- BDD feature-level tags: `@BDD @US1 @FR-001`; scenario-level ID: `@BDD-US1-001`.
 - Edge/error scenarios: include the applicable `@EC-001`.
+- Place each scenario-level ID immediately above exactly one `Scenario` or `Scenario Outline`. Never place a scenario-specific ID above `Feature`, because feature tags are inherited by every scenario.
 - IDs are stable after publication and MUST NOT be shortened, renumbered, or reused.
 
 {CORE_TEMPLATE}
@@ -35,6 +36,7 @@ After the core specification quality validation, perform this blocking test-firs
 - [ ] Every planned executable artifact has one owning suite
 - [ ] Multi-role evidence is mapped without duplicate artifacts
 - [ ] Core identifiers are reused wherever available
+- [ ] Every scenario-specific ID is attached to exactly one scenario rather than inherited from a feature
 - [ ] New identifiers are introduced only where necessary and remain consistent across tests, scenarios, tags, bindings, and traceability
 
 If any item fails, update `spec.md` before reporting completion.

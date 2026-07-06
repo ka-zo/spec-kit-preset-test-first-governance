@@ -31,8 +31,9 @@ Rules:
 Create an ATDD-owned stakeholder-facing scenario under `tests/atdd/features/` when distinct acceptance evidence is needed. A scenario owned by BDD MAY instead satisfy the ATDD role when it fully proves the same stakeholder-facing outcome and traceability records both roles.
 
 ```gherkin
-@ATDD @US1 @FR-001 @SC-001 @ATDD-US1-001
+@ATDD @US1 @FR-001 @SC-001
 Feature: [Feature capability]
+  @ATDD-US1-001
   Scenario: [Stakeholder-visible acceptance outcome]
     Given [initial business state]
     When [stakeholder action or system trigger]
@@ -44,8 +45,9 @@ Feature: [Feature capability]
 Create a BDD-owned behavior example under `tests/bdd/features/` when distinct behavior evidence is needed. A scenario owned by ATDD MAY instead satisfy the BDD role when it fully proves the same user-visible behavior or business rule and traceability records both roles.
 
 ```gherkin
-@BDD @US1 @FR-001 @BDD-US1-001
+@BDD @US1 @FR-001
 Feature: [User behavior or business rule]
+  @BDD-US1-001
   Scenario: [Concrete behavior example]
     Given [context]
     When [behavior occurs]
@@ -65,6 +67,7 @@ Define the implementation-level tests required before code is written.
 - Every `FR-###` MUST have at least one `TDD`, `BDD`, or `ATDD` test mapping.
 - Every user story MUST record a `Required` or justified `N/A` decision for BDD and ATDD.
 - Every `Required` decision MUST map to at least one scenario carrying the corresponding evidence role; the scenario MAY be owned by another suite.
-- Every Gherkin scenario MUST include suite, user story, and requirement tags.
+- Every Gherkin scenario MUST have suite, user story, and requirement tags directly or by feature-level inheritance.
+- Every scenario-specific ID tag MUST appear immediately above exactly one `Scenario` or `Scenario Outline`, never at feature level.
 - All expected error sources, edge cases, and boundary conditions MUST be represented in the matrix.
 - Every executable artifact MUST have one owning suite, with all additional evidence roles represented through traceability rather than duplicated tests.
