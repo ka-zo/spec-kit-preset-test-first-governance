@@ -31,6 +31,9 @@
 
 ## Required Checks
 
+- [ ] Core identifiers are reused wherever available (`US1`, `FR-001`, `SC-001`, and `T###`)
+- [ ] New identifiers exist only where core has no equivalent (`EC-001` and suite-owned executable IDs)
+- [ ] Test, scenario, binding, task, and Gherkin IDs match verbatim across artifacts
 - [ ] Every FR has at least one mapped test artifact
 - [ ] Every user story records BDD and ATDD as `Required` or justified `N/A`
 - [ ] Every `Required` BDD/ATDD decision has scenario coverage

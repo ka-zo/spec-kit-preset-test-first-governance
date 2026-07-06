@@ -5,6 +5,10 @@ Apply these checks in addition to the core cross-artifact analysis.
 ## Additional Critical Findings
 Report a CRITICAL issue if any of the following are true:
 - `specs/<feature>/test-traceability.md` is missing, still contains unresolved required placeholders, or is stale relative to spec.md, plan.md, tasks.md, or execution evidence.
+- Any story heading, source reference, or task label violates Spec Kit's `User Story 1` / `US1` / `[US1]` convention.
+- A parallel alias such as `US-001` is introduced for a core `US1` story.
+- Any necessary preset-specific test, scenario, Gherkin tag, or binding ID is inconsistent with its core source ID.
+- Any published identifier is renumbered or reused for a different artifact.
 - Any executable product-test artifact does not have exactly one owning suite (`TDD`, `BDD`, or `ATDD`).
 - Equivalent tests, scenarios, bindings, or fixtures are duplicated solely to satisfy multiple practice labels.
 - Any user story lacks an explicit `Required` or `N/A` decision for BDD or ATDD.

@@ -15,9 +15,12 @@ Apply these requirements in addition to the core specification workflow.
 
 ## Scenario ID Rules
 Use stable IDs and Gherkin tags:
-- ATDD: `@ATDD @US# @FR-### @SC-### @ATDD-US#-###`
-- BDD: `@BDD @US# @FR-### @BDD-US#-###`
-- Edge/error scenarios: include `@EC-###`.
+- Reuse core identifiers: `US1`, `FR-001`, and `SC-001`.
+- Add `EC-001` only for edge-case traceability because core has no edge-case ID.
+- ATDD: `@ATDD @US1 @FR-001 @SC-001 @ATDD-US1-001`
+- BDD: `@BDD @US1 @FR-001 @BDD-US1-001`
+- Edge/error scenarios: include the applicable `@EC-001`.
+- IDs are stable after publication and MUST NOT be shortened, renumbered, or reused.
 
 {CORE_TEMPLATE}
 
@@ -30,5 +33,7 @@ After the core specification quality validation, perform this blocking test-firs
 - [ ] Every expected error source has a negative-path test plan
 - [ ] Every planned executable artifact has one owning suite
 - [ ] Multi-role evidence is mapped without duplicate artifacts
+- [ ] Core identifiers are reused wherever available
+- [ ] New identifiers are introduced only where necessary and remain consistent across tests, scenarios, tags, bindings, and traceability
 
 If any item fails, update `spec.md` before reporting completion.

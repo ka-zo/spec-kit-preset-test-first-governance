@@ -48,7 +48,7 @@ For every user story, carry forward the specification's BDD and ATDD decisions:
 
 | User Story | BDD | ATDD | N/A Rationale | Alternative Evidence |
 |------------|-----|------|---------------|----------------------|
-| US-001 | [Required/N/A] | [Required/N/A] | [concrete rationale when applicable] | [TDD/gate artifact IDs] |
+| US1 | [Required/N/A] | [Required/N/A] | [concrete rationale when applicable] | [TDD/gate artifact IDs] |
 
 The plan MUST NOT turn an approved `N/A` into ceremonial scenarios. If planning reveals observable behavior or a stakeholder acceptance boundary, change the decision to `Required` and update the specification.
 
@@ -58,6 +58,8 @@ Before planning completes:
 2. Create `specs/<feature>/test-traceability.md` from the resolved content.
 3. Populate every known FR/SC/US/EC, BDD/ATDD applicability decision, planned artifact ID, owning suite, path, and execution command.
 4. Use `Planned` for evidence not yet executed; do not invent Red/Green results during planning.
+
+All populated IDs MUST reuse core forms where available (`US1`, `FR-001`, and `SC-001`) and use preset-specific forms only where necessary (`EC-001`, `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`).
 
 If the file already exists, update it in place and preserve valid execution history.
 

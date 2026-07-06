@@ -18,16 +18,18 @@ For each user story, create tasks in this exact sequence:
 9. `[GATE]` validation tasks for the full test suite, coverage, linting, formatting, and every gate marked `Required`.
 10. `[GATE]` update matrix results to `Green`, `Blocked`, or approved `N/A` and perform the final traceability review.
 
-## Mandatory Task Labels
-Use this extended format for all test and gate tasks:
+## Core-Compatible Suite Markers
+Preserve the core task format and place the suite marker as the first token of the description for test and gate tasks:
 
 ```text
 - [ ] T### [P?] [US#?] [TDD|BDD|ATDD|GATE] Description with exact file path
 ```
 
-`[GATE]` is allowed only for non-product validation tasks and MUST state the protected suite or evidence destination.
+`[TDD]`, `[BDD]`, `[ATDD]`, and `[GATE]` do not replace or alter core `T###`, `[P]`, or `[US1]` identifiers. `[GATE]` is allowed only for non-product validation tasks and MUST state the protected suite or evidence destination.
 
 The label identifies primary suite ownership. If an artifact supports multiple evidence roles, create one task under its owning-suite label and record the other mappings in the description and traceability matrix. Do not generate equivalent tasks or artifacts solely to satisfy multiple labels.
+
+Preserve core Spec Kit story labels such as `[US1]`, `[US2]`, and `[US3]`. Use the same story identifier in suite-owned artifact IDs such as `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`. Do not introduce a parallel `US-001` alias.
 
 ## Required Per-Story Minimum
 Each user story MUST include at least:
@@ -49,3 +51,4 @@ Include in the task generation completion report:
 - List of BDD/ATDD `N/A` decisions with rationale and alternative evidence
 - List of gate applicability decisions, commands, thresholds, and evidence destinations
 - Confirmation that traceability creation and update tasks use `specs/<feature>/test-traceability.md`
+- Confirmation that task-story labels and suite-owned artifact IDs reuse the same core story identifier

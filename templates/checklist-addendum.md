@@ -32,6 +32,11 @@
 
 ### Traceability
 - [ ] `specs/<feature>/test-traceability.md` exists and was created from `test-traceability-template`
+- [ ] Core identifiers are reused: `User Story 1` / `US1` / `[US1]`, `FR-001`, `SC-001`, and `T###`
+- [ ] `EC-001` is introduced only where an edge case needs traceability
+- [ ] Test/scenario IDs use minimal `<SUITE>-US1-001` forms
+- [ ] Gherkin tags, executable bindings, and traceability rows reuse identifiers verbatim
+- [ ] Published IDs have not been shortened, renumbered, or reused
 - [ ] Every FR/SC/US/EC maps to one or more TDD, BDD, or ATDD artifacts
 - [ ] Every Gherkin scenario ID maps to an executable test or step binding
 - [ ] Every executable product-test artifact has exactly one owning suite

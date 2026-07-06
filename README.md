@@ -11,6 +11,15 @@ TDD, BDD, and ATDD are complementary development practices, not mutually exclusi
 
 TDD remains mandatory for production logic. Each user story MUST explicitly mark BDD and ATDD as `Required` or `N/A`. `N/A` is permitted only for technical-only work with no corresponding observable behavior or stakeholder acceptance boundary; it requires a concrete rationale and alternative TDD or quality-gate evidence.
 
+## Identifier Contract
+
+- Reuse core Spec Kit identifiers: `User Story 1`, `US1`, `[US1]`, `FR-001`, `SC-001`, and `T###`.
+- Add `EC-001` only because core Edge Cases have no identifier and traceability needs a stable reference.
+- Test and scenario IDs add only an owning-suite prefix and sequence: `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`.
+- Gherkin tags reuse source and scenario IDs verbatim, for example `@BDD @US1 @FR-001 @BDD-US1-001`.
+
+Identifiers are stable once published. Never renumber or reuse them when artifacts move or requirements change.
+
 ## Install Locally During Development
 
 ```bash

@@ -1,4 +1,4 @@
-@[BDD_OR_ATDD] @US[NUMBER] @FR-[NUMBER] @[SC_OR_EC_ID] @[SCENARIO_ID]
+@[BDD_OR_ATDD] @US1 @FR-001 @SC-001 @[BDD_OR_ATDD]-US1-001
 Feature: [Capability or behavior]
   As a [actor]
   I want [capability]

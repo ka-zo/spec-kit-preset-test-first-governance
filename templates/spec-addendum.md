@@ -8,11 +8,12 @@ For every User Story, Functional Requirement, Success Criterion requiring builda
 
 | Source ID | Source Type | Description | TDD | BDD | ATDD | Test Intent / N/A Rationale |
 |-----------|-------------|-------------|-----|-----|------|-----------------------------|
-| US-001 | User Story | [story summary] | Required | [Required/N/A] | [Required/N/A] | [evidence intent or concrete N/A rationale] |
+| US1 | User Story | [story summary] | Required | [Required/N/A] | [Required/N/A] | [evidence intent or concrete N/A rationale] |
 | FR-001 | Functional Requirement | [requirement summary] | Required | [Required/N/A] | [Required/N/A] | [what proves it works or why a practice does not apply] |
 | EC-001 | Edge Case | [edge/error condition] | Required | [Required/N/A] | [Required/N/A] | [what proves safe handling or why a practice does not apply] |
 
 Rules:
+- Reuse core story identifiers such as `US1`; do not introduce a parallel alias.
 - Each executable test artifact MUST declare exactly one owning suite: `TDD`, `BDD`, or `ATDD`.
 - Required evidence MAY name multiple practices, and one artifact MAY support multiple evidence roles or source IDs.
 - Do not create equivalent copies of an artifact solely to place it in more than one suite.

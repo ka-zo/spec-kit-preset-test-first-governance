@@ -13,6 +13,10 @@
 - Replace universal coverage constants with risk-based approved thresholds, baseline protection, and governed exceptions.
 - Make stack- and risk-dependent quality gates explicitly applicable or justified `N/A`.
 - Prefer reproducible task, PR, and CI evidence over committed per-story generated reports unless audit retention requires them.
+- Reuse core Spec Kit identifiers (`US1`, `FR-001`, `SC-001`, and `T###`) without parallel aliases.
+- Introduce new identifiers only where necessary: `EC-001` for edge-case traceability and `<SUITE>-US1-001` for executable evidence.
+- Keep test, scenario, Gherkin, binding, task, and traceability references consistent with their core source identifiers.
+- Treat suite markers as task-description extensions without altering core `T###`, `[P]`, or `[US1]` identifiers.
 
 ## 1.0.0 - 2026-07-05
 
