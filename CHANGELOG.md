@@ -17,6 +17,8 @@
 - Introduce new identifiers only where necessary: `EC-001` for edge-case traceability and `<SUITE>-US1-001` for executable evidence.
 - Keep test, scenario, Gherkin, binding, task, and traceability references consistent with their core source identifiers.
 - Treat suite markers as task-description extensions without altering core `T###`, `[P]`, or `[US1]` identifiers.
+- Prepare the README for release with Motivation and Approach sections, complete installation and licensing guidance, and removal of the Community Catalog Entry Example and Release Checklist sections.
+- Add a branded header image to the README.
 
 ## 1.0.0 - 2026-07-05
 
