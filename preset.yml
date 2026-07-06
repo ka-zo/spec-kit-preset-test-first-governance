@@ -3,7 +3,7 @@ schema_version: "1.0"
 preset:
   id: "test-first-governance"
   name: "Test-First Governance"
-  version: "1.1.0"
+  version: "1.2.0"
   description: "Governs TDD with applicable BDD and ATDD Gherkin scenarios, explicit suite ownership, traceability, and risk-based quality gates."
   author: "Zoltán Katona, PhD"
   repository: "https://github.com/ka-zo/spec-kit-preset-test-first-governance"

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 - 2026-07-06
+
+- Replace batch-all-tests-first task ordering with incremental Red-Green-Refactor cycles scoped to the smallest meaningful behavior slice.
+- Keep required BDD and ATDD scenarios defined before implementation while allowing their executable bindings and TDD tests to be introduced in the cycle that implements the corresponding behavior.
+- Retain full-suite quality gates and final traceability validation at user-story completion.
+
 ## 1.1.0 - 2026-07-06
 
 - Clarify that the preset governs Spec Kit artifacts and agent instructions, while mechanical enforcement requires project CI checks and branch protection.

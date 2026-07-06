@@ -5,18 +5,20 @@ Apply these requirements in addition to the core task-generation workflow.
 ## Critical Override: Tests Are Not Optional
 If the core command or template says tests are optional, replace that rule with this preset rule: tests are mandatory. Generate TDD tasks for production logic. Generate ATDD and BDD tasks when the specification marks them `Required`; preserve justified `N/A` decisions and report missing or contradictory rationales as blocking gaps.
 
-## Mandatory Task Ordering
-For each user story, create tasks in this exact sequence:
-1. Required `[ATDD]` Gherkin acceptance scenarios.
-2. Required `[BDD]` Gherkin behavior scenarios.
-3. `[ATDD]` and `[BDD]` executable step bindings/support fixtures.
-4. `[TDD]` failing unit/component/integration/contract/property/negative tests.
-5. `[GATE]` update `specs/<feature>/test-traceability.md` with planned artifact IDs, paths, and commands.
-6. `[TDD]`, `[BDD]`, `[ATDD]` red-state execution tasks proving tests fail for expected reasons and updating matrix status to `Red`.
-7. Production implementation tasks.
-8. Refactor tasks.
-9. `[GATE]` validation tasks for the full test suite, coverage, linting, formatting, and every gate marked `Required`.
-10. `[GATE]` update matrix results to `Green`, `Blocked`, or approved `N/A` and perform the final traceability review.
+## Mandatory Incremental Task Ordering
+For each user story:
+1. Create the required `[ATDD]` acceptance and `[BDD]` behavior scenario specifications before production implementation begins.
+2. Add a `[GATE]` task that records planned artifact IDs, paths, commands, and behavior slices in `specs/<feature>/test-traceability.md`.
+3. Divide implementation into the smallest meaningful behavior slices that can be independently verified.
+4. For each slice, generate one ordered Red-Green-Refactor cycle:
+   1. `[ATDD]`, `[BDD]`, and/or `[TDD]` tasks add only the executable bindings and tests needed for that slice.
+   2. Suite execution tasks prove the new evidence fails for the intended missing behavior and update its matrix status to `Red`.
+   3. Production implementation tasks make the smallest change needed to pass that evidence.
+   4. Suite execution tasks confirm the slice is `Green` and update its matrix evidence.
+   5. Refactor tasks improve the design and rerun the relevant evidence while it remains green.
+5. Repeat the cycle for the next slice. Do not accumulate every failing test for the story before beginning production implementation.
+6. After all slices are green, add `[GATE]` validation tasks for the full test suite, coverage, linting, formatting, and every gate marked `Required`.
+7. Finish with a `[GATE]` task that records final `Green`, `Blocked`, or approved `N/A` results and performs the story-level traceability review.
 
 ## Core-Compatible Suite Markers
 Preserve the core task format and place the suite marker as the first token of the description for test and gate tasks:
@@ -37,8 +39,8 @@ Each user story MUST include at least:
 - one `[BDD]` Gherkin feature task when BDD is `Required`;
 - one `[TDD]` happy-path test task;
 - one `[TDD]` edge/error/boundary test task;
-- red-state run tasks before implementation, with evidence retained in task/PR/CI output or an audit-required report;
-- green-state run tasks after implementation;
+- a red-state run before the production change for each behavior slice, with evidence retained in task/PR/CI output or an audit-required report;
+- a green-state run immediately after the corresponding minimal production change;
 - a `[GATE]` task updating `specs/<feature>/test-traceability.md` before implementation and after execution.
 
 {CORE_TEMPLATE}

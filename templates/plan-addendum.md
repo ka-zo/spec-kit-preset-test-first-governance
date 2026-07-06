@@ -92,10 +92,11 @@ The authoritative evidence is the exact command, exit status, and reproducible o
 
 ### Red-Green-Refactor Execution Model
 For each user story:
-1. Write required ATDD Gherkin scenarios and expected failing bindings.
-2. Write required BDD Gherkin scenarios and expected failing bindings.
-3. Write TDD tests covering units, boundaries, error paths, contracts, and integration seams.
-4. Run the relevant suites and record expected failures.
-5. Implement the smallest production code needed to pass.
-6. Refactor with TDD and all required BDD and ATDD suites still green.
-7. Run coverage, linting, formatting, and every gate marked `Required`.
+1. Define the required ATDD and BDD Gherkin scenarios before production implementation begins.
+2. Divide the story into the smallest meaningful behavior slices that can be implemented and verified independently.
+3. For each slice, add only the executable ATDD/BDD bindings and TDD tests needed to drive that slice.
+4. Run that evidence, confirm it fails for the intended missing behavior, and record `Red`.
+5. Implement the smallest production change needed to make the slice pass.
+6. Run the slice evidence, record `Green`, and refactor while keeping the relevant suites green.
+7. Repeat steps 3–6 for the next slice instead of accumulating all failing tests before any production code is written.
+8. At story completion, run the full TDD and required BDD/ATDD suites plus coverage, linting, formatting, and every gate marked `Required`.

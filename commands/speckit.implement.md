@@ -3,11 +3,12 @@
 Apply these execution rules in addition to the core implementation workflow.
 
 ## Critical Execution Rules
-- Do not write production code for a user story until its TDD and all `Required` ATDD/BDD test tasks exist.
-- Run the new TDD and all `Required` ATDD/BDD tests before implementation and confirm they fail for the expected reason. Record red-state evidence in task, PR, or CI output; write a persistent report only when the plan requires versioned retention.
-- After each expected failure, update the matching row in `specs/<feature>/test-traceability.md` to `Red` with its evidence path.
-- Implement the smallest production change needed to pass the failing tests.
-- Refactor only after tests pass, and rerun the relevant suites after refactoring.
+- Do not write production code for a behavior slice until its required TDD and applicable ATDD/BDD executable evidence exists.
+- Run the new evidence for the current slice before its production change and confirm it fails for the expected missing behavior. Record red-state evidence in task, PR, or CI output; write a persistent report only when the plan requires versioned retention.
+- After the expected failure, update the matching row in `specs/<feature>/test-traceability.md` to `Red` with its evidence path.
+- Implement the smallest production change needed to pass the current slice's failing evidence.
+- Rerun the slice evidence, update it to `Green`, and refactor while keeping the relevant suites green.
+- Complete one Red-Green-Refactor cycle before adding executable evidence for the next slice; do not batch every failing test for the story before implementation.
 - Run full TDD, all required BDD/ATDD suites, coverage, linting, formatting, and every quality gate marked `Required` before marking the story complete.
 - Update each executed artifact or gate to `Green` or `Blocked`; retain `N/A` only with its approved rationale and alternative evidence.
 - Mark tasks `[X]` only after the relevant tests/gates have been executed and evidence paths exist.
