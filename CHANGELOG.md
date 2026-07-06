@@ -10,6 +10,9 @@
 - Permit governed `N/A` decisions for technical-only work when backed by a concrete rationale and alternative TDD or quality-gate evidence.
 - Materialize the traceability template at `specs/<feature>/test-traceability.md` during planning.
 - Require task-generation, implementation, and analysis workflows to maintain and validate traceability statuses and execution evidence.
+- Replace universal coverage constants with risk-based approved thresholds, baseline protection, and governed exceptions.
+- Make stack- and risk-dependent quality gates explicitly applicable or justified `N/A`.
+- Prefer reproducible task, PR, and CI evidence over committed per-story generated reports unless audit retention requires them.
 
 ## 1.0.0 - 2026-07-05
 

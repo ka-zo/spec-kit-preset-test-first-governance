@@ -10,9 +10,9 @@
 
 | Source ID | Source Type | Owning Suite | Evidence Role(s) | Test/Scenario ID | Artifact Path | Execution Command | Status | Evidence Path | Notes |
 |-----------|-------------|--------------|------------------|------------------|---------------|-------------------|--------|---------------|-------|
-| FR-001 | Functional Requirement | TDD | TDD | TDD-US1-001 | tests/tdd/unit/test_[name].[ext] | [command] | Planned | [report/CI link] | [notes] |
-| US1 | User Story | BDD | BDD | BDD-US1-001 | tests/bdd/features/user-stories/[feature].feature | [command] | Planned | [report/CI link] | [notes] |
-| US1 | User Story | ATDD | ATDD, BDD | ATDD-US1-001 | tests/atdd/features/acceptance/[feature].feature | [command] | Planned | [report/CI link] | [shared acceptance/behavior evidence] |
+| FR-001 | Functional Requirement | TDD | TDD | TDD-US1-001 | tests/tdd/unit/test_[name].[ext] | [command] | Planned | [task/PR/CI/report link] | [notes] |
+| US1 | User Story | BDD | BDD | BDD-US1-001 | tests/bdd/features/user-stories/[feature].feature | [command] | Planned | [task/PR/CI/report link] | [notes] |
+| US1 | User Story | ATDD | ATDD, BDD | ATDD-US1-001 | tests/atdd/features/acceptance/[feature].feature | [command] | Planned | [task/PR/CI/report link] | [shared acceptance/behavior evidence] |
 
 ## BDD and ATDD Applicability
 

@@ -33,13 +33,13 @@ tests/
 │   ├── fixtures/
 │   ├── helpers/
 │   └── runner-adapters/
-└── reports/
+└── [reports/]  # only when versioned report retention is required
     ├── tdd/
     ├── bdd/
     └── atdd/
 ```
 
-If the repository uses a platform-specific convention, keep the platform convention but preserve the same semantic split: `tdd`, `bdd`, `atdd`, and `reports` MUST be visible when those suites produce artifacts. Do not create empty BDD or ATDD directories when the practice is entirely `N/A`.
+If the repository uses a platform-specific convention, keep the platform convention but preserve visible `tdd`, `bdd`, and `atdd` ownership when those suites produce artifacts. Do not create empty BDD or ATDD directories when the practice is entirely `N/A`. Create a reports directory only when the evidence-retention policy requires versioned local reports.
 
 Suite directories identify primary ownership, not mutually exclusive test types. Shared fixtures, helpers, environment setup, and runner adapters MUST live under `tests/support/` or an equivalent shared path unless they are genuinely suite-specific. The plan MUST identify and remove equivalent scenarios or tests duplicated only to satisfy multiple practice labels.
 
@@ -61,27 +61,32 @@ Before planning completes:
 
 If the file already exists, update it in place and preserve valid execution history.
 
-### Test Tooling Decisions
-| Suite/Gate | Tool | Scope | Required Command | Output Path | Blocking? |
-|------------|------|-------|------------------|-------------|-----------|
-| TDD | [unit test runner] | unit/component/integration/contract/property/negative | `[command]` | tests/reports/tdd/ | Yes |
-| BDD | [Gherkin/Cucumber-compatible runner] | required behavior scenarios and step bindings | `[command or N/A]` | tests/reports/bdd/ | When required |
-| ATDD | [acceptance/e2e runner] | required stakeholder acceptance scenarios | `[command or N/A]` | tests/reports/atdd/ | When required |
-| Coverage | [coverage tool] | suite coverage | `[command]` | tests/reports/tdd/coverage/ | Yes |
-| Lint/Format | [linter/formatter] | source + tests | `[command]` | tests/reports/tdd/lint/ | Yes |
-| Static Analysis | [type checker/SAST/static analyzer] | source + tests | `[command]` | tests/reports/tdd/static/ | Yes |
-| Runtime Smoke | [smoke runner] | deployed/runnable artifact | `[command]` | tests/reports/atdd/runtime/ | Yes |
+### Test Tooling and Gate Decisions
+| Suite/Gate | Applicability | Tool and Required Command | Threshold | Evidence Retention | Rationale |
+|------------|---------------|---------------------------|-----------|--------------------|-----------|
+| TDD | Required | [runner + command] | all planned tests pass | [CI output/artifact] | production logic |
+| BDD | [Required/N/A] | [runner + command or N/A] | all planned scenarios pass | [CI output/artifact] | [decision] |
+| ATDD | [Required/N/A] | [runner + command or N/A] | all planned scenarios pass | [CI output/artifact] | [decision] |
+| Coverage | Required | [tool + command] | [line/branch thresholds] | [CI artifact] | changed production code |
+| Lint/Format | Required | [tools + commands] | zero blocking findings | [CI output] | source consistency |
+| Static Analysis | [Required/N/A] | [tool + command or N/A] | [severity policy] | [CI output/artifact] | [stack/risk rationale] |
+| Security | [Required/N/A] | [tool + command or N/A] | [severity policy] | [CI artifact] | [threat-surface rationale] |
+| Runtime Smoke | [Required/N/A] | [runner + command or N/A] | all declared checks pass | [CI artifact] | [runnable-artifact rationale] |
 
-### Minimum Quality Thresholds
-Unless the project constitution or user specifies stricter values, use these minimum gates:
-- TDD line coverage: **90%** for changed production code.
-- TDD branch coverage: **85%** for changed production code.
+### Risk-Based Threshold Policy
+The plan MUST declare coverage thresholds based on change scope, risk, and the existing project baseline:
+- Recommended starting guardrails for changed production code are **90% line** and **85% branch** coverage; they are not universal constants.
+- Coverage MUST NOT regress below the accepted project baseline.
+- Lower thresholds require a scoped exception with rationale, compensating evidence, approver, and expiry or follow-up task.
 - BDD scenario execution: **100% of planned BDD scenarios pass**.
 - ATDD scenario execution: **100% of planned ATDD scenarios pass**.
 - Lint/format: **0 blocking findings**.
-- Static analysis/type checking: **0 blocking findings**.
-- Runtime smoke: **all declared smoke checks pass**.
+- Required static analysis/type checking: **0 blocking findings** under the declared severity policy.
+- Required runtime smoke: **all declared smoke checks pass**.
 - Security-sensitive code paths: include negative tests for authentication, authorization, validation, injection, path traversal, secrets handling, and persistence failures where applicable.
+
+### Evidence Retention
+The authoritative evidence is the exact command, exit status, and reproducible output referenced by `specs/<feature>/test-traceability.md`. Store machine-readable reports as CI artifacts by default. Commit generated reports only when an explicit audit or regulatory retention policy requires versioned evidence.
 
 ### Red-Green-Refactor Execution Model
 For each user story:
@@ -91,4 +96,4 @@ For each user story:
 4. Run the relevant suites and record expected failures.
 5. Implement the smallest production code needed to pass.
 6. Refactor with TDD and all required BDD and ATDD suites still green.
-7. Run coverage, linting, static analysis, and runtime smoke gates.
+7. Run coverage, linting, formatting, and every gate marked `Required`.

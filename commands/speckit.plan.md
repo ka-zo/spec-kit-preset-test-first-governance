@@ -4,10 +4,10 @@ Apply these requirements in addition to the core planning workflow.
 
 ## Mandatory Planning Outputs
 The implementation plan MUST include:
-- test directory structure with visible `tests/tdd/`, `tests/bdd/`, `tests/atdd/`, and `tests/reports/` ownership;
-- selected tools and commands for TDD, BDD, ATDD, coverage, linting, static analysis/type checking, and runtime smoke validation;
-- minimum quality thresholds;
-- expected report paths;
+- test directory structure with visible ownership for every applicable suite;
+- selected tools and commands for TDD, BDD, ATDD, coverage, linting, formatting, static analysis/type checking, security, and runtime smoke validation;
+- gate applicability, blocking behavior, risk-based thresholds, and exception policy;
+- CI output or artifact locations and any explicit versioned-report retention requirement;
 - red-green-refactor execution model for every user story;
 - a materialized `specs/<feature>/test-traceability.md` mapping FR/SC/US/EC IDs to test and scenario IDs;
 - BDD and ATDD applicability decisions, including rationale and alternative evidence for every `N/A`.
@@ -36,6 +36,7 @@ Before completing the plan, verify:
 - [ ] The plan makes tests mandatory, not optional
 - [ ] Required BDD and ATDD practices have Gherkin runners or equivalent bindings
 - [ ] Every BDD/ATDD `N/A` remains justified and is not contradicted by the planned behavior
-- [ ] Coverage/lint/static/runtime gate commands are declared
-- [ ] Test reports are stored by suite under `tests/reports/`
+- [ ] Coverage thresholds protect changed code and the accepted project baseline
+- [ ] Every gate has a command or a justified `N/A`, plus blocking behavior and evidence retention
+- [ ] Lower threshold exceptions identify scope, rationale, compensating evidence, approver, and expiry/follow-up
 - [ ] `specs/<feature>/test-traceability.md` exists and contains all known planned mappings

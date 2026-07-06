@@ -10,6 +10,7 @@ Include these categories when applicable:
 - BDD applicability, Gherkin completeness, and step-binding mirroring
 - ATDD applicability, acceptance completeness, and executable mirroring
 - rationale and alternative evidence for BDD/ATDD `N/A` decisions
-- Coverage, linting, static analysis, and runtime smoke gates
+- risk-based coverage, linting, formatting, and applicable static-analysis/security/runtime gates
+- gate applicability, threshold exceptions, blocking behavior, and evidence retention
 - lifecycle completeness of `specs/<feature>/test-traceability.md`
-- Directory ownership: `tests/tdd/`, `tests/bdd/`, `tests/atdd/`, `tests/reports/`
+- directory ownership for applicable `tests/tdd/`, `tests/bdd/`, and `tests/atdd/` suites

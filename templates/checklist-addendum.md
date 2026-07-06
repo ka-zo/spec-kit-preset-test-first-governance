@@ -23,11 +23,12 @@
 - [ ] ATDD feature files and step definitions are stored under `tests/atdd/` or equivalent platform-specific path
 
 ### Quality Gates
-- [ ] Coverage thresholds are declared and enforced
+- [ ] Coverage thresholds are risk-based, approved, enforced, and prevent baseline regression
 - [ ] Linting/formatting is configured and blocking
-- [ ] Static analysis/type checking is configured and blocking
-- [ ] Runtime smoke checks are configured and blocking
-- [ ] Reports are stored in `tests/reports/` by suite
+- [ ] Static analysis, security validation, and runtime smoke are `Required` or have a concrete `N/A` rationale
+- [ ] Every required gate is blocking and has reproducible commands
+- [ ] Threshold exceptions are scoped, approved, compensated, and time-bounded or tracked
+- [ ] Evidence retention uses CI output/artifacts by default; committed reports have an explicit audit rationale
 
 ### Traceability
 - [ ] `specs/<feature>/test-traceability.md` exists and was created from `test-traceability-template`

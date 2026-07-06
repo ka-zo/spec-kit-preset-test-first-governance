@@ -14,7 +14,10 @@ Report a CRITICAL issue if any of the following are true:
 - Any Gherkin scenario lacks an executable test binding or planned binding task.
 - Any implementation task appears before required test tasks for the same story.
 - Any FR/SC/EC has zero mapped test artifacts.
-- Coverage, linting, static analysis, or runtime smoke gates are missing.
+- Coverage lacks approved thresholds or permits regression below the accepted baseline.
+- Any quality gate lacks a command or a justified `N/A`, blocking behavior, or an evidence-retention destination.
+- Any threshold exception lacks scope, rationale, compensating evidence, approval, or expiry/follow-up.
+- Per-story generated reports are required without an audit or regulatory retention rationale.
 - Test directories do not make TDD/BDD/ATDD ownership clear.
 
 {CORE_TEMPLATE}
@@ -23,11 +26,19 @@ Report a CRITICAL issue if any of the following are true:
 Add these tables to the report:
 
 ### Test Suite Coverage Summary
-| Suite | Applicability | Planned Artifacts | Executable Bindings | Report Path | Blocking Gaps |
-|-------|---------------|-------------------|---------------------|-------------|---------------|
-| TDD | Required | [count] | [count] | tests/reports/tdd/ | [gaps] |
-| BDD | [Required/N/A] | [count] | [count] | tests/reports/bdd/ | [gaps] |
-| ATDD | [Required/N/A] | [count] | [count] | tests/reports/atdd/ | [gaps] |
+| Suite | Applicability | Planned Artifacts | Executable Bindings | Evidence Destination | Blocking Gaps |
+|-------|---------------|-------------------|---------------------|----------------------|---------------|
+| TDD | Required | [count] | [count] | [CI/report location] | [gaps] |
+| BDD | [Required/N/A] | [count] | [count] | [CI/report location] | [gaps] |
+| ATDD | [Required/N/A] | [count] | [count] | [CI/report location] | [gaps] |
+
+### Quality Gate Decisions
+| Gate | Applicability | Threshold/Policy | Evidence Destination | Exception | Gap? |
+|------|---------------|------------------|----------------------|-----------|------|
+| Coverage | Required | [line/branch + baseline] | [location] | [none/details] | [yes/no] |
+| Static Analysis | [Required/N/A] | [severity policy] | [location] | [none/details] | [yes/no] |
+| Security | [Required/N/A] | [severity policy] | [location] | [none/details] | [yes/no] |
+| Runtime Smoke | [Required/N/A] | [pass policy] | [location] | [none/details] | [yes/no] |
 
 ### Requirement-to-Test Traceability
 | Source ID | TDD | BDD | ATDD | Matrix Status | Evidence | Gap? |

@@ -5,7 +5,7 @@ This preset governs a strict test-first delivery workflow for Spec Kit features:
 - **TDD**: failing implementation-level tests before production code, including happy paths, boundaries, edge cases, and expected error sources.
 - **BDD**: Gherkin behavior scenarios with executable mirrored step bindings when the feature has user-visible behavior or business rules.
 - **ATDD**: Gherkin acceptance scenarios with executable mirrored acceptance tests when the feature has a stakeholder-facing acceptance boundary.
-- **Quality gates**: coverage, linting, formatting, static analysis/type checking, runtime smoke checks, and traceability.
+- **Quality gates**: risk-based coverage, linting, formatting, static analysis/type checking, applicable runtime smoke checks, and traceability.
 
 TDD, BDD, and ATDD are complementary development practices, not mutually exclusive test types. Every executable test artifact has one **owning suite** for directory, task, command, and report routing, but it MAY provide evidence for multiple practices or requirements. Equivalent tests MUST NOT be copied between suites merely to satisfy labels.
 
@@ -50,10 +50,10 @@ tests/
 ├── bdd/
 ├── atdd/
 ├── support/
-└── reports/
+└── [reports/]  # only when versioned report retention is required
 ```
 
-Platform-specific conventions are allowed only when suite ownership remains visible. A BDD or ATDD directory is required when that practice has executable artifacts; an entirely non-applicable suite need not create an empty directory. Shared fixtures, helpers, and runner adapters belong under `tests/support/` (or an equivalent shared path) instead of being duplicated across suites.
+Platform-specific conventions are allowed only when suite ownership remains visible. A BDD or ATDD directory is required when that practice has executable artifacts; an entirely non-applicable suite need not create an empty directory. Shared fixtures, helpers, and runner adapters belong under `tests/support/` (or an equivalent shared path) instead of being duplicated across suites. A local reports directory is optional because CI is the default evidence-retention mechanism.
 
 ## Traceability Lifecycle
 
@@ -65,6 +65,12 @@ specs/<feature>/test-traceability.md
 
 `/speckit.plan` resolves the preset's `test-traceability-template` and creates the file. `/speckit.tasks` adds explicit update tasks, `/speckit.implement` records Red/Green and gate evidence, and `/speckit.analyze` treats a missing or stale matrix as a blocking issue.
 
+## Quality-Gate Policy
+
+Every project declares its gate commands, applicability, thresholds, and evidence retention during planning. Coverage is mandatory for changed production code; 90% line and 85% branch coverage are recommended starting guardrails rather than universal constants. Lower thresholds require a documented, approved exception and compensating evidence.
+
+Runtime smoke, security, and tool-specific static-analysis gates are required when applicable to the stack and risk surface. A gate may be `N/A` only with a concrete technical rationale. Red-state and final results should normally be retained as reproducible CI output or CI artifacts, not committed per-story report files.
+
 ## Community Catalog Entry Example
 
 ```json
@@ -72,7 +78,7 @@ specs/<feature>/test-traceability.md
   "name": "Test-First Governance",
   "id": "test-first-governance",
   "version": "1.0.0",
-  "description": "Governs TDD with applicable BDD and ATDD Gherkin scenarios, explicit suite ownership, traceability, coverage, linting, static analysis, and runtime validation gates.",
+  "description": "Governs TDD with applicable BDD and ATDD Gherkin scenarios, explicit suite ownership, traceability, and risk-based quality gates.",
   "author": "Your Name or Organization",
   "repository": "https://github.com/your-org/spec-kit-preset-test-first-governance",
   "download_url": "https://github.com/your-org/spec-kit-preset-test-first-governance/archive/refs/tags/v1.0.0.zip",
