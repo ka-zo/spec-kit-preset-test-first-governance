@@ -22,10 +22,10 @@ The preset strengthens the existing [GitHub Spec Kit](https://github.com/github/
 
 This preset requires GitHub Spec Kit `>=0.8.0`. It governs generated artifacts and agent instructions; it does not install the test runners or analysis tools selected during planning.
 
-After the `v1.2.0` release tag is published, install it directly with:
+After a release tag is published, install it directly with:
 
 ```bash
-specify preset add --from "https://github.com/ka-zo/spec-kit-preset-test-first-governance/archive/refs/tags/v1.2.0.zip" --priority 5
+specify preset add --from "https://github.com/ka-zo/spec-kit-preset-test-first-governance/archive/refs/tags/<release-tag>.zip" --priority 5
 ```
 
 If the preset is available in your configured catalog:
