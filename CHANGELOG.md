@@ -12,6 +12,7 @@
 - Keep reusable suite, user-story, requirement, success-criterion, and edge-case tags at feature level where Gherkin inheritance applies.
 - Normalize feature traceability into an evidence artifact registry, a source-to-artifact coverage map, BDD/ATDD applicability decisions, and separate quality-gate results.
 - Store commands, execution status, and evidence once per artifact or gate instead of repeating mutable results across source-mapping rows.
+- Reorganize and streamline the README around installation, workflow, governed behavior, generated artifacts, and CI enforcement while retaining the Motivation and Approach sections.
 
 ## 1.1.0 - 2026-07-06
 

@@ -4,71 +4,37 @@
 
 ## Motivation
 
-Spec-Driven Development makes intent explicit before implementation, but a well-written specification alone does not prove that the resulting software is correct, resilient, or complete. This preset strengthens the path from specification to implementation by requiring test-first executable evidence, behavior and acceptance coverage where applicable, requirement-to-test traceability, and risk-based quality gates.
+Spec-Driven Development makes intent explicit before implementation, but a specification alone does not prove that the resulting software is correct, resilient, or complete. This preset strengthens the path from specification to implementation with test-first executable evidence, requirement-to-test traceability, and risk-based quality gates.
 
-The goal is to make SDD delivery more robust and repeatable: requirements remain connected to tests, expected failures are observed before production code is written, and implementation is considered complete only when the declared evidence and quality checks support that conclusion.
+The goal is a robust and repeatable delivery workflow in which expected failures are observed before production changes, requirements remain connected to current evidence, and completion depends on declared tests and quality checks passing.
 
 ## Approach
 
-The preset strengthens the existing Spec Kit workflow rather than replacing it. It combines several complementary techniques:
+The preset strengthens the existing [GitHub Spec Kit](https://github.com/github/spec-kit) workflow rather than replacing it:
 
-- **Test-Driven Development (TDD)** uses the Red-Green-Refactor cycle: write a failing test, implement the smallest change that makes it pass, then improve the design while tests remain green. This provides rapid feedback and keeps production logic testable.
-- **Behavior-Driven Development (BDD)** describes user-visible behavior and business rules through concrete Gherkin examples. These shared examples reduce ambiguity and connect expected behavior to executable tests.
-- **Acceptance Test-Driven Development (ATDD)** defines stakeholder-facing acceptance evidence before implementation. It helps ensure that delivered functionality satisfies the intended business outcome, not merely its internal design.
-- **Requirement-to-test traceability** connects stories, requirements, edge cases, scenarios, tests, and execution evidence. It exposes missing or stale coverage across the development lifecycle.
-- **Risk-based quality gates** apply coverage, linting, formatting, static analysis, security, and runtime checks according to the project’s technology and risk surface. They provide broader safeguards without imposing irrelevant ceremony.
+- **Test-Driven Development (TDD)** applies incremental Red-Green-Refactor cycles to production logic.
+- **Behavior-Driven Development (BDD)** expresses applicable user-visible behavior and business rules as executable Gherkin examples.
+- **Acceptance Test-Driven Development (ATDD)** defines executable stakeholder-facing acceptance evidence before implementation.
+- **Traceability** connects stories, requirements, edge cases, scenarios, tests, and current execution evidence.
+- **Risk-based quality gates** apply coverage, linting, formatting, static analysis, security, and runtime checks according to the project's stack and risk surface.
 
-These techniques are carried through specification, planning, task generation, implementation, and analysis. Tests precede production code, expected failures are observed, required evidence remains traceable, and completion is blocked when declared tests or quality gates do not support it.
+## Requirements and Installation
 
-## Governance Scope
+This preset requires GitHub Spec Kit `>=0.8.0`. It governs generated artifacts and agent instructions; it does not install the test runners or analysis tools selected during planning.
 
-This preset governs a strict test-first delivery workflow for Spec Kit features:
+After the `v1.2.0` release tag is published, install it directly with:
 
-- **TDD**: failing implementation-level tests before production code, including happy paths, boundaries, edge cases, and expected error sources.
-- **BDD**: Gherkin behavior scenarios with executable mirrored step bindings when the feature has user-visible behavior or business rules.
-- **ATDD**: Gherkin acceptance scenarios with executable mirrored acceptance tests when the feature has a stakeholder-facing acceptance boundary.
-- **Quality gates**: risk-based coverage, linting, formatting, static analysis/type checking, applicable runtime smoke checks, and traceability.
+```bash
+specify preset add --from "https://github.com/ka-zo/spec-kit-preset-test-first-governance/archive/refs/tags/v1.2.0.zip" --priority 5
+```
 
-TDD, BDD, and ATDD are complementary development practices, not mutually exclusive test types. Every executable test artifact has one **owning suite** for directory, task, command, and report routing, but it MAY provide evidence for multiple practices or requirements. Equivalent tests MUST NOT be copied between suites merely to satisfy labels.
-
-TDD remains mandatory for production logic. Each user story MUST explicitly mark BDD and ATDD as `Required` or `N/A`. `N/A` is permitted only for technical-only work with no corresponding observable behavior or stakeholder acceptance boundary; it requires a concrete rationale and alternative TDD or quality-gate evidence.
-
-A `Required` BDD or ATDD decision creates an evidence obligation, not a quota for a separately owned artifact. One Gherkin scenario MAY satisfy both practices when its examples and assertions fully cover both the user-visible behavior and the stakeholder-facing acceptance outcome. The scenario keeps one owning suite, and the traceability artifact records both evidence roles. Separate scenarios are required only when the two practices need materially different examples, execution boundaries, or assertions.
-
-## Identifier Contract
-
-- Reuse core Spec Kit identifiers: `User Story 1`, `US1`, `[US1]`, `FR-001`, `SC-001`, and `T###`.
-- Add `EC-001` only because core Edge Cases have no identifier and traceability needs a stable reference.
-- Test and scenario IDs add only an owning-suite prefix and sequence: `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`.
-- Gherkin tags reuse source and scenario IDs verbatim, for example `@BDD @US1 @FR-001 @BDD-US1-001`.
-
-Identifiers are stable once published. Never renumber or reuse them when artifacts move or requirements change.
-Place each unique scenario ID tag immediately above its `Scenario` or `Scenario Outline`. Reusable suite, story, requirement, success-criterion, and edge-case tags MAY be placed above `Feature` and inherited by its scenarios.
-
-## Installation
-
-This preset requires GitHub Spec Kit `>=0.8.0`.
-
-After the preset is published to an install-enabled catalog:
+If the preset is available in your configured catalog:
 
 ```bash
 specify preset add test-first-governance --priority 5
 ```
 
-To install a tagged release directly:
-
-```bash
-specify preset add --from "https://github.com/ka-zo/spec-kit-preset-test-first-governance/archive/refs/tags/v<version number>.zip" --priority 5
-```
-
-For local development, run the following commands from this repository root:
-
-```bash
-specify preset add --dev . --priority 5
-specify preset resolve spec-template
-specify preset resolve tasks-template
-specify preset info test-first-governance
-```
+Priority `5` allows the preset's mandatory test-first rules to supersede lower-priority optional-test wording while remaining composable with other presets.
 
 ## Recommended Workflow
 
@@ -84,15 +50,22 @@ specify preset info test-first-governance
 /speckit.converge
 ```
 
-## Governance and Enforcement Boundary
+This preset strengthens `constitution`, `specify`, `plan`, `checklist`, `tasks`, `analyze`, and `implement`. It does not modify `clarify` or `converge`; `clarify` is an optional but recommended step before planning.
 
-The preset uses append and wrap composition so it can coexist with other presets. It adds mandatory sections to core templates and wraps core commands with stronger test-first instructions.
+## Governance Scope
 
-Within the Spec Kit workflow, if a lower-priority/core template says tests are optional, this preset supersedes that wording. Tests are mandatory for all buildable behavior.
+- **TDD** is mandatory for production logic and covers happy paths, boundaries, edge cases, contracts, and expected error sources.
+- **BDD** is required for applicable user-visible behavior, business rules, alternate flows, and observable errors.
+- **ATDD** is required for applicable stakeholder-facing acceptance criteria and release boundaries.
+- **Quality gates** include risk-based coverage, linting, formatting, static analysis/type checking, security validation, applicable runtime smoke checks, and traceability.
 
-A preset governs generated artifacts and agent instructions; it does not install test tools, configure CI, or prevent contributors from bypassing the workflow. For mechanical enforcement, projects using this preset MUST configure the test and quality-gate commands selected during planning as required CI checks and, where available, protect the target branch against failing or missing checks.
+Each user story marks BDD and ATDD as `Required` or `N/A`. `N/A` is allowed only for technical-only work when the corresponding observable behavior or stakeholder acceptance boundary does not exist, and it requires a concrete rationale plus alternative TDD or quality-gate evidence.
 
-## Required Directory Semantics
+Every executable test artifact has one **owning suite** for its path, command, and reporting route. One scenario may satisfy both BDD and ATDD when it fully covers both intents; traceability records both evidence roles without duplicating the scenario, binding, task, command, or report.
+
+## Generated Artifacts and Conventions
+
+### Test Suite Ownership
 
 ```text
 tests/
@@ -103,30 +76,46 @@ tests/
 └── [reports/]  # only when versioned report retention is required
 ```
 
-Platform-specific conventions are allowed only when suite ownership remains visible. A BDD or ATDD directory is required when that practice has executable artifacts; an entirely non-applicable suite need not create an empty directory. Shared fixtures, helpers, and runner adapters belong under `tests/support/` (or an equivalent shared path) instead of being duplicated across suites. A local reports directory is optional because CI is the default evidence-retention mechanism.
+Platform-specific layouts are allowed when suite ownership remains visible. BDD-owned artifacts belong under `tests/bdd/`, and ATDD-owned artifacts belong under `tests/atdd/`, or equivalent platform-specific paths. A secondary BDD or ATDD evidence role does not require another directory or a duplicate artifact. Shared fixtures, helpers, and runner adapters belong under `tests/support/` or an equivalent shared path. CI artifacts are the default evidence-retention mechanism, so a committed reports directory is normally unnecessary.
 
-## Traceability Lifecycle
+### Feature Traceability
 
-Each feature uses one canonical traceability artifact:
+Planning creates one canonical artifact for each feature:
 
 ```text
 specs/<feature>/test-traceability.md
 ```
 
-The file separates stable coverage relationships from mutable execution results:
+It maps FR/SC/US/EC source identifiers to registered test and scenario artifacts while keeping current execution and quality-gate results in their owning entries. Task generation plans updates, implementation records Red/Green evidence, and analysis reports missing, stale, duplicated, or dangling traceability data as blocking governance issues. See the [traceability template](templates/test-traceability-template.md) for its normalized structure.
 
-- the **Evidence Artifact Registry** owns each test/scenario path, command, status, and evidence location;
-- the **Source Coverage Map** links FR/SC/US/EC identifiers to artifact IDs without copying execution state;
-- **BDD and ATDD Applicability** records `Required` and justified `N/A` decisions;
-- **Quality Gate Results** owns gate commands, policies, statuses, and evidence.
+### Identifier and Gherkin Rules
 
-`/speckit.plan` resolves the preset's `test-traceability-template` and creates the file. `/speckit.tasks` adds explicit update tasks, `/speckit.implement` records Red/Green and gate evidence in their owning sections, and `/speckit.analyze` treats missing, stale, duplicated, or dangling traceability data as blocking.
+- Reuse core Spec Kit identifiers: `User Story 1`, `US1`, `[US1]`, `FR-001`, `SC-001`, and `T###`.
+- Add `EC-001` only when an edge case needs a stable traceability identifier.
+- Use owning-suite test and scenario IDs such as `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`.
+- Reuse source IDs as Gherkin tags, for example `@BDD @US1 @FR-001`.
+- Place each unique scenario ID, such as `@BDD-US1-001`, immediately above its `Scenario` or `Scenario Outline`.
 
-## Quality-Gate Policy
+Published identifiers are stable: never renumber or reuse them when artifacts move or requirements change. Reusable suite, story, requirement, success-criterion, and edge-case tags may be placed above `Feature` and inherited by its scenarios.
 
-Every project declares its gate commands, applicability, thresholds, and evidence retention during planning. Coverage is mandatory for changed production code; 90% line and 85% branch coverage are recommended starting guardrails rather than universal constants. Lower thresholds require a documented, approved exception and compensating evidence.
+## Quality Gates and Enforcement Boundary
 
-Runtime smoke, security, and tool-specific static-analysis gates are required when applicable to the stack and risk surface. A gate may be `N/A` only with a concrete technical rationale. Red-state and final results should normally be retained as reproducible CI output or CI artifacts, not committed per-story report files.
+Every project declares gate applicability, commands, thresholds, blocking behavior, and evidence retention during planning. Coverage is mandatory for changed production code; 90% line and 85% branch coverage are recommended starting guardrails rather than universal constants. Lower thresholds require a documented, approved exception and compensating evidence.
+
+Runtime smoke, security, and tool-specific static-analysis gates are required when applicable to the stack and risk surface. A gate may be `N/A` only with a concrete technical rationale. Red-state and final results should normally be retained as reproducible CI output or CI artifacts rather than committed per-story reports.
+
+The preset cannot prevent contributors from bypassing the workflow. For mechanical enforcement, configure the selected test and quality-gate commands as required CI checks and, where available, protect the target branch against failing or missing checks.
+
+## Local Preset Development
+
+From this repository root:
+
+```bash
+specify preset add --dev . --priority 5
+specify preset resolve spec-template
+specify preset resolve tasks-template
+specify preset info test-first-governance
+```
 
 ## License
 
