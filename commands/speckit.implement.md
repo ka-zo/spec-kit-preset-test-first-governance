@@ -11,6 +11,7 @@ Apply these execution rules in addition to the core implementation workflow.
 - Complete one Red-Green-Refactor cycle before adding executable evidence for the next slice; do not batch every failing test for the story before implementation.
 - Run full TDD, all executable evidence mapped to required BDD/ATDD roles, coverage, linting, formatting, and every quality gate marked `Required` before marking the story complete.
 - Update each executed artifact in the registry and each gate in Quality Gate Results to `Green` or `Blocked`; retain `N/A` only with its approved rationale and alternative evidence.
+- Keep the Scenario Coverage Matrix current when scenarios, examples, sampling strategies, shared BDD/ATDD evidence, or source mappings change.
 - Mark tasks `[X]` only after the relevant tests/gates have been executed and evidence paths exist.
 
 ## Failure Handling
@@ -28,7 +29,8 @@ If a test fails for an unexpected reason, stop the current story implementation 
 - [ ] All TDD tests pass and approved coverage thresholds are met without baseline regression
 - [ ] All scenarios mapped to required BDD roles pass and have executable bindings
 - [ ] All scenarios mapped to required ATDD roles pass and have executable bindings
-- [ ] Shared BDD/ATDD evidence uses one owning-suite execution route and provides both mapped roles
+- [ ] The Scenario Coverage Matrix covers every required behavior, acceptance boundary, edge/error condition, and approved example or sampling strategy
+- [ ] Shared BDD/ATDD evidence uses one owning-suite execution route, provides both mapped roles, and records an equivalence rationale
 - [ ] Every BDD/ATDD `N/A` remains justified and has alternative evidence
 - [ ] Linting/formatting has zero blocking findings
 - [ ] Every required static-analysis, security, and runtime-smoke gate passes

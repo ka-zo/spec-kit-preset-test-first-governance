@@ -51,7 +51,24 @@ For every user story, carry forward the specification's BDD and ATDD decisions:
 
 The plan MUST NOT turn an approved `N/A` into ceremonial scenarios. If planning reveals observable behavior or a stakeholder acceptance boundary, change the decision to `Required` and update the specification.
 
-A `Required` decision does not require a scenario owned by that practice. When one scenario fully covers both behavior and acceptance intent, assign it one owning suite, map both evidence roles, and use its owning-suite path, command, and report. Create separate BDD and ATDD artifacts only when their examples, execution boundaries, or assertions materially differ.
+A `Required` decision does not require a scenario owned by that practice. When one scenario fully covers both behavior and acceptance intent, assign it one owning suite, map both evidence roles, record an explicit equivalence rationale, and use its owning-suite path, command, and report. Create separate BDD and ATDD artifacts when their examples, execution boundaries, assertions, interfaces, or acceptance outcomes differ materially.
+
+### Scenario Coverage Matrix
+The plan MUST carry forward or refine the specification's scenario coverage matrix in `specs/<feature>/test-traceability.md`:
+
+| Scenario / Example ID | Owning Suite | Evidence Role(s) | Primary Source ID | Covered Inputs / Classes | Positive / Negative / Boundary | Interface | Rationale |
+|-----------------------|--------------|------------------|-------------------|--------------------------|---------------------------------|-----------|-----------|
+| BDD-US1-001:example-001 | BDD | BDD | FR-001 | [supported option/class] | Positive | [CLI/API/UI] | [coverage reason] |
+| ATDD-US1-001:example-001 | ATDD | ATDD | SC-001 | [acceptance workflow/class] | Positive | [end-to-end boundary] | [acceptance reason] |
+
+Planning MUST verify that:
+- every source marked `TDD` required has enough planned TDD artifacts to cover implementation-level behavior, boundaries, invalid inputs, state transitions, integration contracts, expected error sources, and edge/error cases;
+- every user-visible FR has at least one BDD scenario or scenario-outline example unless BDD is justified `N/A`;
+- every buildable SC has ATDD scenario evidence unless ATDD is justified `N/A`;
+- every EC/error condition has a negative or boundary row;
+- every scenario outline enumerates all required examples or records an approved sampling strategy;
+- required externally visible combinations use full coverage or justified pairwise/risk-based sampling;
+- broad umbrella scenarios are not the only evidence for unrelated FRs, SCs, or ECs.
 
 ### Traceability Materialization
 Before planning completes:
@@ -59,8 +76,9 @@ Before planning completes:
 2. Create `specs/<feature>/test-traceability.md` from the resolved content.
 3. Populate the Evidence Artifact Registry with each planned artifact ID, owning suite, evidence roles, path, and execution command.
 4. Populate the Source Coverage Map with every known FR/SC/US/EC and its artifact IDs.
-5. Populate BDD/ATDD applicability decisions and Quality Gate Results without copying artifact execution fields into source mappings.
-6. Use `Planned` for required evidence not yet executed; do not invent Red/Green results during planning.
+5. Populate the Scenario Coverage Matrix with scenario/example rows, primary source IDs, input classes, interfaces, and sampling or shared-evidence rationales.
+6. Populate BDD/ATDD applicability decisions and Quality Gate Results without copying artifact execution fields into source mappings.
+7. Use `Planned` for required evidence not yet executed; do not invent Red/Green results during planning.
 
 All populated IDs MUST reuse core forms where available (`US1`, `FR-001`, and `SC-001`) and use preset-specific forms only where necessary (`EC-001`, `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`).
 

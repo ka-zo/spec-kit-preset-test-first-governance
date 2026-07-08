@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.0 - 2026-07-08
+
+- Replace "minimum non-duplicative" BDD/ATDD scenario generation with coverage-complete, non-duplicative scenario generation.
+- Replace per-story minimum TDD task wording with coverage-complete TDD inventory and task generation.
+- Add scenario granularity rules requiring BDD coverage for user-visible requirements, supported user-facing option classes, and edge/error conditions.
+- Add ATDD coverage rules for buildable success criteria, end-to-end story acceptance, externally visible option combinations, and release-boundary evidence.
+- Require scenario outlines to enumerate required examples or record an approved sampling strategy such as pairwise, boundary-value, or risk-based representative coverage.
+- Add a Scenario Coverage Matrix to the traceability template so each scenario or scenario-outline example records its primary source ID, covered inputs/classes, polarity, interface, and rationale.
+- Require broad umbrella scenarios to be reported as blocking gaps when they are the only evidence for unrelated FRs, SCs, ECs, inputs, interfaces, outcomes, or error messages.
+- Tighten shared BDD/ATDD evidence rules so one scenario may satisfy both roles only when traceability records an explicit equivalence rationale.
+- Update specify, plan, tasks, analyze, implement, checklist, constitution, README, and preset metadata wording to align with the stricter scenario coverage model.
+
 ## 1.2.0 - 2026-07-06
 
 - Replace batch-all-tests-first task ordering with incremental Red-Green-Refactor cycles scoped to the smallest meaningful behavior slice.

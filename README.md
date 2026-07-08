@@ -54,14 +54,16 @@ This preset strengthens `constitution`, `specify`, `plan`, `checklist`, `tasks`,
 
 ## Governance Scope
 
-- **TDD** is mandatory for production logic and covers happy paths, boundaries, edge cases, contracts, and expected error sources.
+- **TDD** is mandatory for production logic and must be coverage-complete for the implementation-level behavior, including happy paths, boundaries, edge cases, contracts, and expected error sources.
 - **BDD** is required for applicable user-visible behavior, business rules, alternate flows, and observable errors.
 - **ATDD** is required for applicable stakeholder-facing acceptance criteria and release boundaries.
 - **Quality gates** include risk-based coverage, linting, formatting, static analysis/type checking, security validation, applicable runtime smoke checks, and traceability.
 
 Each user story marks BDD and ATDD as `Required` or `N/A`. `N/A` is allowed only for technical-only work when the corresponding observable behavior or stakeholder acceptance boundary does not exist, and it requires a concrete rationale plus alternative TDD or quality-gate evidence.
 
-Every executable test artifact has one **owning suite** for its path, command, and reporting route. One scenario may satisfy both BDD and ATDD when it fully covers both intents; traceability records both evidence roles without duplicating the scenario, binding, task, command, or report.
+Every executable test artifact has one **owning suite** for its path, command, and reporting route. One scenario may satisfy both BDD and ATDD when it fully covers both intents and traceability records why the behavior example and stakeholder acceptance boundary are equivalent; this avoids duplicating the scenario, binding, task, command, or report.
+
+TDD inventories are coverage-complete rather than merely minimal; generated tasks must include every required implementation-level behavior, boundary, invalid input, state transition, integration contract, and expected error source. BDD and ATDD scenario sets are also coverage-complete rather than merely minimal. Scenario outlines enumerate required examples or record an approved sampling strategy such as pairwise coverage, boundary-value coverage, or risk-based representative coverage. Broad umbrella scenarios are blocking gaps when they are the only evidence for unrelated requirements, success criteria, edge cases, inputs, interfaces, outcomes, or error messages.
 
 ## Generated Artifacts and Conventions
 
@@ -86,7 +88,7 @@ Planning creates one canonical artifact for each feature:
 specs/<feature>/test-traceability.md
 ```
 
-It maps FR/SC/US/EC source identifiers to registered test and scenario artifacts while keeping current execution and quality-gate results in their owning entries. Task generation plans updates, implementation records Red/Green evidence, and analysis reports missing, stale, duplicated, or dangling traceability data as blocking governance issues. See the [traceability template](templates/test-traceability-template.md) for its normalized structure.
+It maps FR/SC/US/EC source identifiers to registered test and scenario artifacts while keeping current execution and quality-gate results in their owning entries. It also includes a Scenario Coverage Matrix so individual scenarios and scenario-outline examples declare their primary source, covered input class, interface, polarity, and rationale. Task generation plans updates, implementation records Red/Green evidence, and analysis reports missing, stale, under-covered, duplicated, or dangling traceability data as blocking governance issues. See the [traceability template](templates/test-traceability-template.md) for its normalized structure.
 
 ### Identifier and Gherkin Rules
 
