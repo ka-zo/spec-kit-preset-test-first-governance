@@ -50,7 +50,21 @@ Priority `5` allows the preset's mandatory test-first rules to supersede lower-p
 /speckit.converge
 ```
 
-This preset strengthens `constitution`, `specify`, `plan`, `checklist`, `tasks`, `analyze`, and `implement`. It does not modify `clarify` or `converge`; `clarify` is an optional but recommended step before planning.
+This preset strengthens `constitution`, `specify`, `plan`, `checklist`, `tasks`, `analyze`, `implement`, and `converge`. It does not modify `clarify`; `clarify` is an optional but recommended step before planning.
+
+## Default Behavior And Overrides
+
+This preset does not define special CLI flags. Users guide it by adding normal text to the relevant Spec Kit command. The table below lists the main behaviors most users may want to tune; later commands may refine earlier defaults when the decision naturally becomes clearer.
+
+| Behavior | Description | Default Behavior | How To Change The Behavior | Effect / Impact | Recommended Command | Example Override |
+|----------|-------------|------------------|----------------------------|-----------------|---------------------|------------------|
+| BDD and ATDD applicability | Decides when behavior and acceptance evidence are required. | BDD is required for user-visible behavior and business rules. ATDD is required for stakeholder acceptance criteria and release boundaries. Technical-only work may mark either as `N/A` with rationale and alternative evidence. | State which stories, requirements, or success criteria are `Required` or `N/A`, and explain every `N/A`. | Controls whether Gherkin scenarios, bindings, scenario matrix rows, and executable BDD/ATDD evidence are generated. | `/speckit.specify`, because applicability depends on feature intent. | `Mark BDD N/A for this internal refactor because there is no user-visible behavior; use TDD and coverage evidence instead.` |
+| Test coverage expectations | Defines how complete the TDD and scenario coverage must be. | TDD is mandatory for production logic. BDD/ATDD scenario sets are coverage-complete, non-duplicative, and enumerate required examples unless an approved sampling strategy is recorded. | Name additional risk areas, negative paths, contracts, state transitions, property tests, or sampling strategies such as pairwise or boundary-value coverage. | Expands or focuses the planned test inventory, scenario examples, generated tasks, and coverage matrix rows. | `/speckit.specify` for required behavior, then `/speckit.plan` for test levels and tooling. | `Use pairwise scenario-outline examples for browser x role x locale combinations, plus boundary-value examples for upload size limits.` |
+| Test and quality tooling | Selects runners and gates used to produce evidence. | Use stack-native tools. Coverage, linting, and formatting are required; static analysis, security, and runtime smoke are required when applicable. | Name tools, commands, gate policies, and any justified `N/A` gates. | Determines suite commands, quality-gate tasks, evidence links, and pass/fail criteria. | `/speckit.plan`, because tooling depends on stack and risk surface. | `Use pytest, pytest-bdd, coverage.py, ruff, mypy, and bandit; runtime smoke is Required for the packaged API service.` |
+| Coverage and threshold policy | Sets numeric coverage expectations and exception handling. | Recommended starting guardrails are 90% line and 85% branch coverage for changed production code, with no baseline regression. | Provide different thresholds, baseline policy, exception scope, approver, expiry, and compensating evidence. | Changes coverage gate pass/fail criteria and what must be documented for exceptions. | `/speckit.plan`, because thresholds depend on project risk and current baseline. | `Coverage thresholds: 95% line, 90% branch for changed auth code; lower branch coverage requires security-owner approval.` |
+| Evidence retention and reports | Controls where evidence and professional test reports are stored. | Feature reports live under `specs/<feature>/`: `test-traceability.md`, `defect-log.md`, and `test-summary.md`. Raw runner output is retained as CI artifacts by default. | Specify committed report retention, CI artifact paths, issue tracker links, approval roles, or an alternate canonical report convention. | Affects where Red/Green evidence, defects, risks, approvals, and release evidence are recorded and reviewed. | `/speckit.plan` for policy; `/speckit.implement` for updates. | `Retain raw pytest, coverage, and bandit output as CI artifacts; link GitHub issue IDs from defect-log.md.` |
+| Overall test summary destination | Controls where project/release-level aggregate test results are written. | If no release ID is supplied, convergence defaults to `rolling` and writes `reports/test-summary.md`. Release mode writes `reports/releases/<release-id>/test-summary.md`. | Provide `rolling` or `release`, a release ID when needed, and an output path matching the selected mode. | Determines whether `/speckit.converge` updates one latest summary or creates versioned release evidence. | `/speckit.converge`, because release intent is usually known after implementation. | `Overall Test Summary Destination: release. Release ID: v1.3.0. Output path: reports/releases/v1.3.0/test-summary.md.` |
+| Extra overall reports | Controls whether project/release-level reports beyond the aggregate test summary are created. | Do not create separate overall test-plan, inventory, traceability, execution, or defect reports. Use the aggregate summary plus feature reports and CI artifacts. | Declare the audit, regulatory, customer, or tool-integration requirement that needs an additional overall report. | Prevents duplicate report sets while allowing externally required documentation. | `/speckit.converge`, because this is a release or audit decision. | `Customer contract requires an overall defect report; generate it from feature defect logs and link it from the overall test summary.` |
 
 ## Governance Scope
 
@@ -89,6 +103,44 @@ specs/<feature>/test-traceability.md
 ```
 
 It maps FR/SC/US/EC source identifiers to registered test and scenario artifacts while keeping current execution and quality-gate results in their owning entries. It also includes a Scenario Coverage Matrix so individual scenarios and scenario-outline examples declare their primary source, covered input class, interface, polarity, and rationale. Task generation plans updates, implementation records Red/Green evidence, and analysis reports missing, stale, under-covered, duplicated, or dangling traceability data as blocking governance issues. See the [traceability template](templates/test-traceability-template.md) for its normalized structure.
+
+### Professional Test Reports
+
+The preset keeps the minimum professional reporting set explicit while avoiding duplicated documents:
+
+| Report | Feature Artifact |
+|--------|------------------|
+| Test Plan | `plan.md` |
+| Test Inventory / Test Case Report | `specs/<feature>/test-traceability.md` |
+| Requirements Traceability Matrix | `specs/<feature>/test-traceability.md` |
+| Test Execution Report | `specs/<feature>/test-traceability.md` plus CI artifacts |
+| Defect Report | `specs/<feature>/defect-log.md` |
+| Test Summary Report | `specs/<feature>/test-summary.md` |
+
+`defect-log.md` records defects, unexpected failures, severity/priority, release impact, risk acceptance, and verification closure. `test-summary.md` records execution totals, coverage and traceability status, defect summary, risks/exceptions, evidence links, approvals when applicable, and the Go/No-Go recommendation. CI artifacts and tool-generated outputs remain raw evidence referenced by these reports unless audit, regulatory, customer, or tool-integration needs require additional standalone reports.
+
+At project or release level, the preset creates only one aggregate report by default:
+
+```text
+reports/test-summary.md
+```
+
+For versioned releases, use:
+
+```text
+reports/releases/<release-id>/test-summary.md
+```
+
+The overall test summary aggregates feature summaries, feature traceability reports, feature defect logs, and CI artifacts. It does not duplicate overall test-plan, inventory, traceability, execution, or defect reports unless audit, regulatory, customer, or tool-integration requirements explicitly call for them.
+
+Users control the aggregate report location with an Overall Test Summary Destination decision in `plan.md` or the `/speckit.converge` request:
+
+| Mode | Release ID | Output Path |
+|------|------------|-------------|
+| `rolling` | `N/A` | `reports/test-summary.md` |
+| `release` | `<release-id>` | `reports/releases/<release-id>/test-summary.md` |
+
+If no release ID is provided, convergence defaults to `rolling` and writes `reports/test-summary.md`. If a release ID is provided for versioned evidence, convergence writes `reports/releases/<release-id>/test-summary.md`.
 
 ### Identifier and Gherkin Rules
 

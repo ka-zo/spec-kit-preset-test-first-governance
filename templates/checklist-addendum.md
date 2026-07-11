@@ -35,6 +35,18 @@
 - [ ] Threshold exceptions are scoped, approved, compensated, and time-bounded or tracked
 - [ ] Evidence retention uses CI output/artifacts by default; committed reports have an explicit audit rationale
 
+### Professional Test Reports
+- [ ] `plan.md` contains the test-plan scope, strategy, tools, environments, gates, thresholds, risks, and evidence-retention policy
+- [ ] `specs/<feature>/test-traceability.md` covers the test inventory, requirements traceability matrix, execution evidence index, scenario coverage matrix, and quality-gate results
+- [ ] `specs/<feature>/defect-log.md` exists and contains defect summary, severity/priority policy, defect details, triage/release-impact review, risk acceptance, verification closure, metrics, and required checks
+- [ ] `specs/<feature>/test-summary.md` exists and contains executive summary, scope, execution totals, coverage/traceability status, defect summary, risks/exceptions, environment/tooling, evidence links, approvals, and Go/No-Go recommendation
+- [ ] Defect counts, execution totals, coverage/gate status, exceptions, evidence links, and recommendation are consistent across traceability, defect log, test summary, CI output, and task evidence
+- [ ] Project/release aggregation uses one overall Test Summary Report at `reports/test-summary.md` or `reports/releases/<release-id>/test-summary.md`
+- [ ] The overall summary destination decision declares mode (`rolling` or `release`), release ID when required, output path, and rationale
+- [ ] The aggregate output path matches the destination decision: `rolling` uses `reports/test-summary.md`; `release` uses `reports/releases/<release-id>/test-summary.md`
+- [ ] The overall Test Summary Report links feature summaries, feature traceability reports, feature defect logs, and CI artifacts instead of duplicating overall traceability, inventory, execution, or defect reports
+- [ ] No additional standalone report is required unless the plan declares an audit, regulatory, customer, or tool-integration reason
+
 ### Traceability
 - [ ] `specs/<feature>/test-traceability.md` exists and was created from `test-traceability-template`
 - [ ] Core identifiers are reused: `User Story 1` / `US1` / `[US1]`, `FR-001`, `SC-001`, and `T###`

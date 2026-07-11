@@ -42,6 +42,33 @@ If the repository uses a platform-specific convention, keep the platform convent
 
 Suite directories identify primary ownership, not mutually exclusive test types. Shared fixtures, helpers, environment setup, and runner adapters MUST live under `tests/support/` or an equivalent shared path unless they are genuinely suite-specific. The plan MUST identify and remove equivalent scenarios or tests duplicated only to satisfy multiple practice labels.
 
+### Minimum Professional Test Reports
+The feature MUST maintain the minimum professional reporting set while avoiding unnecessary document sprawl:
+
+| Professional Report | Feature Artifact | Required Sections / Scope |
+|---------------------|------------------|---------------------------|
+| Test Plan | `plan.md` | scope, strategy, suite ownership, tools, commands, environments, quality gates, thresholds, risks, entry/exit expectations, and evidence retention |
+| Test Inventory / Test Case Report | `specs/<feature>/test-traceability.md` | evidence artifact registry with IDs, owning suites, roles, paths, commands, statuses, evidence links, and notes |
+| Requirements Traceability Matrix | `specs/<feature>/test-traceability.md` | source coverage map, scenario coverage matrix, BDD/ATDD applicability, and normalized source-to-artifact relationships |
+| Test Execution Report | `specs/<feature>/test-traceability.md` plus CI artifacts | Red/Green/Blocked statuses, command evidence paths, quality-gate results, raw runner output links, and retained CI artifacts |
+| Defect Report | `specs/<feature>/defect-log.md` | defect summary, severity/priority policy, detailed reproduction, triage, release impact, risk acceptance, and verification closure |
+| Test Summary Report | `specs/<feature>/test-summary.md` | executive summary, scope, execution totals, coverage/traceability status, defect summary, risks/exceptions, environment, evidence index, and Go/No-Go recommendation |
+
+CI artifacts and machine-readable tool reports are raw evidence referenced by these reports. Create additional standalone reports only when audit, regulatory, customer, or tool-integration needs are declared in the plan.
+
+Project or release-level aggregation is handled later by `/speckit.converge` through a single overall Test Summary Report at `reports/test-summary.md` or `reports/releases/<release-id>/test-summary.md`. Do not create overall traceability, inventory, execution, or defect reports during feature planning unless an external requirement is declared.
+
+Declare the destination decision before convergence:
+
+| Setting | Value |
+|---------|-------|
+| Overall summary mode | [rolling/release] |
+| Release ID | [N/A or release-id] |
+| Output path | [reports/test-summary.md or reports/releases/<release-id>/test-summary.md] |
+| Rationale | [why this destination is appropriate] |
+
+Use `rolling` with `reports/test-summary.md` when the project wants one latest aggregate report. Use `release` with `reports/releases/<release-id>/test-summary.md` when the project wants versioned release evidence. If no release ID is provided, default to `rolling`.
+
 ### BDD and ATDD Applicability
 For every user story, carry forward the specification's BDD and ATDD decisions:
 
@@ -73,16 +100,19 @@ Planning MUST verify that:
 ### Traceability Materialization
 Before planning completes:
 1. Resolve the template named `test-traceability-template` through Spec Kit's template resolver.
-2. Create `specs/<feature>/test-traceability.md` from the resolved content.
-3. Populate the Evidence Artifact Registry with each planned artifact ID, owning suite, evidence roles, path, and execution command.
-4. Populate the Source Coverage Map with every known FR/SC/US/EC and its artifact IDs.
-5. Populate the Scenario Coverage Matrix with scenario/example rows, primary source IDs, input classes, interfaces, and sampling or shared-evidence rationales.
-6. Populate BDD/ATDD applicability decisions and Quality Gate Results without copying artifact execution fields into source mappings.
-7. Use `Planned` for required evidence not yet executed; do not invent Red/Green results during planning.
+2. Resolve the templates named `defect-log-template` and `test-summary-template`.
+3. Create `specs/<feature>/test-traceability.md`, `specs/<feature>/defect-log.md`, and `specs/<feature>/test-summary.md` from the resolved content.
+4. Populate the Evidence Artifact Registry with each planned artifact ID, owning suite, evidence roles, path, and execution command.
+5. Populate the Source Coverage Map with every known FR/SC/US/EC and its artifact IDs.
+6. Populate the Scenario Coverage Matrix with scenario/example rows, primary source IDs, input classes, interfaces, and sampling or shared-evidence rationales.
+7. Populate BDD/ATDD applicability decisions and Quality Gate Results without copying artifact execution fields into source mappings.
+8. Initialize `defect-log.md` with zero known defects or known planning defects and preserve its severity/priority, triage, release-impact, and verification sections.
+9. Initialize `test-summary.md` with report links, planned scope, planned evidence locations, and a non-final status such as `Blocked` or `Not Run`.
+10. Use `Planned` for required evidence not yet executed; do not invent Red/Green results during planning.
 
 All populated IDs MUST reuse core forms where available (`US1`, `FR-001`, and `SC-001`) and use preset-specific forms only where necessary (`EC-001`, `TDD-US1-001`, `BDD-US1-001`, and `ATDD-US1-001`).
 
-If the file already exists, update it in place and preserve valid registry and gate execution history.
+If a report file already exists, update it in place and preserve valid registry and gate execution history, defect history, risk-acceptance decisions, approvals, and evidence links.
 
 ### Test Tooling and Gate Decisions
 | Practice/Gate | Applicability | Tool and Required Command | Threshold | Evidence Retention | Rationale |

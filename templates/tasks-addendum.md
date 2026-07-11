@@ -28,7 +28,7 @@ Rules:
 Within each user story phase:
 
 1. **Scenario specification** — create a coverage-complete, non-duplicative set of scenarios that covers all required ATDD acceptance and BDD behavior evidence roles before production implementation begins.
-2. **Traceability planning update** — add artifact definitions to the Evidence Artifact Registry, source relationships to the Source Coverage Map, and scenario/example rows to the Scenario Coverage Matrix in `specs/<feature>/test-traceability.md`.
+2. **Report planning update** — add artifact definitions to the Evidence Artifact Registry, source relationships to the Source Coverage Map, and scenario/example rows to the Scenario Coverage Matrix in `specs/<feature>/test-traceability.md`; confirm `specs/<feature>/defect-log.md` and `specs/<feature>/test-summary.md` exist and link to the plan and traceability report.
 3. **Incremental behavior cycles** — divide the story into the smallest meaningful slices that can be independently verified. For each slice, tasks MUST appear in this order:
    1. **Executable evidence** — add only the ATDD/BDD bindings and TDD tests needed for the current slice.
    2. **Expected failure checkpoint** — run the new evidence, confirm it fails for the intended missing behavior, and record `Red`.
@@ -37,7 +37,7 @@ Within each user story phase:
    5. **Refactor** — improve the design and rerun the relevant evidence while it remains green.
 4. **Repeat** — complete the cycle before adding executable evidence for the next slice; do not accumulate all failing tests for the story before any production implementation.
 5. **Story validation checkpoint** — after all slices are green, run TDD and all executable evidence mapped to required BDD/ATDD roles, plus coverage, linting, formatting, and every gate marked `Required`.
-6. **Traceability result update** — record final artifact results in the registry and gate results in Quality Gate Results.
+6. **Report result update** — record final artifact results in the registry, gate results in Quality Gate Results, defect status changes in `defect-log.md`, and execution/coverage/defect/risk summary in `test-summary.md`.
 
 Shared bindings, fixtures, or helpers MUST be created once under `tests/support/` (or the selected equivalent) and referenced by each consuming suite.
 
@@ -55,7 +55,7 @@ Add as many behavior slices and `[TDD]` tasks as the TDD Test Inventory requires
 ### Tests for User Story 1 - [Title] *(MANDATORY: write before implementation)*
 - [ ] T010 [P] [US1] [ATDD] Create Gherkin acceptance scenario @ATDD-US1-001 in tests/atdd/features/acceptance/[feature].feature
 - [ ] T011 [P] [US1] [BDD] Create Gherkin behavior scenario @BDD-US1-001 in tests/bdd/features/user-stories/[feature].feature
-- [ ] T012 [US1] [GATE] Add planned artifacts to the registry, source relationships to the coverage map, and scenario/example rows to the scenario coverage matrix in specs/<feature>/test-traceability.md
+- [ ] T012 [US1] [GATE] Add planned artifacts to the registry, source relationships to the coverage map, and scenario/example rows to the scenario coverage matrix in specs/<feature>/test-traceability.md; confirm specs/<feature>/defect-log.md and specs/<feature>/test-summary.md are initialized
 
 ### Behavior Slice 1 - [Happy-path capability]
 - [ ] T013 [P] [US1] [ATDD] Implement failing acceptance binding for @ATDD-US1-001 in tests/atdd/steps/[feature]_steps.[ext]
@@ -80,6 +80,8 @@ Add as many behavior slices and `[TDD]` tasks as the TDD Test Inventory requires
 ### User Story 1 Completion
 - [ ] T029 [US1] [GATE] Run TDD, all evidence mapped to required BDD/ATDD roles, coverage, linting, formatting, and all gates marked Required; retain evidence per the plan
 - [ ] T030 [US1] [GATE] Update artifact registry and Quality Gate Results entries with final statuses and evidence paths
+- [ ] T031 [US1] [GATE] Update specs/<feature>/defect-log.md with verified, open, rejected, or deferred defects and release-impact decisions
+- [ ] T032 [US1] [GATE] Update specs/<feature>/test-summary.md with execution totals, coverage and traceability status, defect summary, risks/exceptions, evidence links, and Go/No-Go recommendation
 ```
 
 ### Global Quality Gate Tasks
@@ -91,3 +93,5 @@ The final phase MUST include:
 - `[GATE]` required static analysis or type checking for source and tests.
 - `[GATE]` required security and runtime smoke validation where applicable.
 - `[GATE]` traceability review proving all FR/SC/US/EC IDs map to registered artifacts whose current statuses and evidence are stored once in their registry entries.
+- `[GATE]` defect-log review proving unexpected failures, open defects, deferred defects, risk acceptances, and verification evidence are current.
+- `[GATE]` test-summary review proving execution totals, coverage/traceability status, quality-gate results, defect counts, risks/exceptions, evidence links, and recommendation match the canonical reports.

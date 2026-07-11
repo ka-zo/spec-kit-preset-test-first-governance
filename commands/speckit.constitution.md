@@ -7,7 +7,7 @@ Before and after executing the core constitution workflow, ensure the project co
 - coverage-complete BDD/ATDD scenario sets, required example coverage, and approved sampling strategies;
 - Gherkin scenario ID to executable test mirroring;
 - reuse of core identifiers and stable preset-specific IDs only where core has no equivalent;
-- risk-based coverage, linting, formatting, applicable static-analysis/security/runtime gates, and lifecycle-managed traceability.
+- risk-based coverage, linting, formatting, applicable static-analysis/security/runtime gates, lifecycle-managed traceability, the minimum professional test report set, and a single aggregate project/release test summary.
 
 If the constitution omits these principles, add them or report a blocking governance gap.
 
@@ -26,3 +26,6 @@ If the constitution omits these principles, add them or report a blocking govern
 - [ ] Constitution requires explicit gate applicability, threshold exceptions, and evidence-retention policy
 - [ ] Constitution defines `specs/<feature>/test-traceability.md` as the canonical normalized traceability artifact
 - [ ] Constitution separates artifact execution state, source mappings, scenario coverage matrix, applicability decisions, and quality-gate results
+- [ ] Constitution requires the minimum professional test report set: test plan, traceability/inventory/execution report, defect log, and test summary report
+- [ ] Constitution requires only one aggregate project/release Test Summary Report by default and prohibits duplicate overall traceability, inventory, execution, or defect reports without a declared external requirement
+- [ ] Constitution requires an explicit overall-summary destination decision for rolling vs release output path

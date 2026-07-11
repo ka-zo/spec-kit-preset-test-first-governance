@@ -18,4 +18,8 @@ Include these categories when applicable:
 - risk-based coverage, linting, formatting, and applicable static-analysis/security/runtime gates
 - gate applicability, threshold exceptions, blocking behavior, and evidence retention
 - lifecycle completeness and normalized registry/map/scenario-matrix/gate structure of `specs/<feature>/test-traceability.md`
+- professional report completeness for `plan.md`, `specs/<feature>/test-traceability.md`, `specs/<feature>/defect-log.md`, and `specs/<feature>/test-summary.md`
+- consistency between traceability, defect log, test summary, task evidence, and CI artifacts
+- project/release aggregate summary completeness for `reports/test-summary.md` or `reports/releases/<release-id>/test-summary.md`, without duplicate overall report types unless explicitly required
+- overall summary destination decision for rolling vs release output path
 - directory ownership for applicable `tests/tdd/`, `tests/bdd/`, and `tests/atdd/` suites

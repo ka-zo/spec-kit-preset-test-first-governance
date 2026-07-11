@@ -5,6 +5,9 @@ Apply these checks in addition to the core cross-artifact analysis.
 ## Additional Critical Findings
 Report a CRITICAL issue if any of the following are true:
 - `specs/<feature>/test-traceability.md` is missing, lacks any required normalized section, still contains unresolved required placeholders, or is stale relative to spec.md, plan.md, tasks.md, or execution evidence.
+- `specs/<feature>/defect-log.md` is missing, lacks required defect summary/detail/triage/verification sections, or is stale relative to unexpected failures, blocked gates, accepted risks, or verification evidence.
+- `specs/<feature>/test-summary.md` is missing, lacks required execution/coverage/defect/risk/evidence/recommendation sections, or is stale relative to traceability, defect log, CI evidence, or gate results.
+- For project/release convergence, `reports/test-summary.md` or `reports/releases/<release-id>/test-summary.md` is missing, lacks aggregate feature/execution/coverage/defect/risk/evidence/recommendation sections, or is stale relative to included feature summaries or CI artifacts.
 - Within the traceability artifact, artifact commands, statuses, or evidence paths are copied into Source Coverage Map rows instead of being stored once in the Evidence Artifact Registry.
 - A source or applicability row references an artifact ID missing from the registry, or an executable artifact has more than one registry entry.
 - The Scenario Coverage Matrix is missing, incomplete, or lacks scenario/example rows for required BDD/ATDD evidence.
@@ -34,6 +37,13 @@ Report a CRITICAL issue if any of the following are true:
 - Any quality gate lacks a command or a justified `N/A`, blocking behavior, or an evidence-retention destination.
 - Any threshold exception lacks scope, rationale, compensating evidence, approval, or expiry/follow-up.
 - Per-story generated reports are required without an audit or regulatory retention rationale.
+- Any unexpected test or gate failure lacks a defect entry or explicit non-defect rationale.
+- Any open Critical or High defect lacks a verified fix, rejection rationale, or approved risk acceptance.
+- The test summary recommends `Go` while required evidence is missing, failed, blocked, stale, or contradicted by unaccepted Critical/High defects.
+- The overall test summary recommends `Go` while any included feature summary, required gate, CI artifact, or unaccepted Critical/High defect contradicts the recommendation.
+- The overall test summary output path does not match the declared destination mode and release ID, or the destination decision is missing during convergence.
+- Overall Test Plan, Test Inventory, Requirements Traceability Matrix, Test Execution, or Defect reports are duplicated at project/release level without an explicit audit, regulatory, customer, or tool-integration requirement.
+- Defect counts, exception counts, execution totals, or release-impact decisions differ between `defect-log.md`, `test-summary.md`, and `test-traceability.md`.
 - Test directories do not make TDD/BDD/ATDD ownership clear.
 
 {CORE_TEMPLATE}
@@ -69,3 +79,26 @@ Add these tables to the report:
 | Scenario / Example ID | Primary Source ID | Evidence Roles | Covered Inputs / Classes | Interface | Sampling / Sharing Rationale | Gap? |
 |-----------------------|-------------------|----------------|--------------------------|-----------|-------------------------------|------|
 | ATDD-US1-001:example-001 | FR-001 | ATDD, BDD | [classes] | [interface] | [rationale] | [yes/no] |
+
+### Defect Report Summary
+| Defect ID | Severity | Priority | Status | Release Impact | Evidence / Verification | Gap? |
+|-----------|----------|----------|--------|----------------|-------------------------|------|
+| DEF-US1-001 | [severity] | [priority] | [status] | [impact] | [links] | [yes/no] |
+
+### Test Summary Report Check
+| Report Area | Status | Evidence | Gap? |
+|-------------|--------|----------|------|
+| Execution totals | [current/stale/missing] | [links] | [yes/no] |
+| Coverage and traceability | [current/stale/missing] | [links] | [yes/no] |
+| Defect and risk summary | [current/stale/missing] | [links] | [yes/no] |
+| Release recommendation | [Go/No-Go/Conditional/invalid] | [rationale] | [yes/no] |
+
+### Overall Test Summary Check
+| Report Area | Status | Evidence | Gap? |
+|-------------|--------|----------|------|
+| Included feature report links | [current/stale/missing] | [links] | [yes/no] |
+| Aggregate execution totals | [current/stale/missing] | [CI/features] | [yes/no] |
+| Aggregate coverage, gates, defects, and risks | [current/stale/missing] | [CI/features] | [yes/no] |
+| Duplicate overall report types avoided | [yes/no] | [rationale] | [yes/no] |
+| Destination decision | [rolling/release/missing] | [output path + release ID] | [yes/no] |
+| Project/release recommendation | [Go/No-Go/Conditional/invalid] | [rationale] | [yes/no] |

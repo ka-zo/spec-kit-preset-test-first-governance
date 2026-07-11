@@ -2,6 +2,8 @@
 
 **Feature**: [link to spec.md]  
 **Plan**: [link to plan.md]  
+**Defect Log**: [link to defect-log.md]  
+**Test Summary**: [link to test-summary.md]  
 **Created**: [DATE]
 
 **Last Updated**: [DATE]
@@ -74,3 +76,5 @@
 - [ ] Within this traceability artifact, artifact commands, statuses, and evidence exist only in the registry and match the latest execution results
 - [ ] Within this traceability artifact, gate commands, policies, statuses, and evidence exist only in Quality Gate Results and match the latest execution results
 - [ ] Source Coverage Map rows do not duplicate mutable execution status or evidence
+- [ ] Unexpected failures, blocked evidence, deferred defects, accepted risks, and verification closures are reflected in `defect-log.md`
+- [ ] Execution totals, coverage/traceability status, defect summary, risks/exceptions, evidence links, and recommendation are reflected in `test-summary.md`

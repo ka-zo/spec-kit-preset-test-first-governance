@@ -8,6 +8,10 @@
 - Add ATDD coverage rules for buildable success criteria, end-to-end story acceptance, externally visible option combinations, and release-boundary evidence.
 - Require scenario outlines to enumerate required examples or record an approved sampling strategy such as pairwise, boundary-value, or risk-based representative coverage.
 - Add a Scenario Coverage Matrix to the traceability template so each scenario or scenario-outline example records its primary source ID, covered inputs/classes, polarity, interface, and rationale.
+- Add minimum professional test report governance with feature-level defect log and test summary report templates.
+- Require planning to materialize `test-traceability.md`, `defect-log.md`, and `test-summary.md`, while treating CI artifacts as raw execution evidence.
+- Add an overall test summary template and converge wrapper for project/release aggregation without duplicating overall traceability, inventory, execution, or defect reports.
+- Add an explicit Overall Test Summary Destination decision so users choose rolling `reports/test-summary.md` or release-specific `reports/releases/<release-id>/test-summary.md` output.
 - Require broad umbrella scenarios to be reported as blocking gaps when they are the only evidence for unrelated FRs, SCs, ECs, inputs, interfaces, outcomes, or error messages.
 - Tighten shared BDD/ATDD evidence rules so one scenario may satisfy both roles only when traceability records an explicit equivalence rationale.
 - Update specify, plan, tasks, analyze, implement, checklist, constitution, README, and preset metadata wording to align with the stricter scenario coverage model.
