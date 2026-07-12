@@ -2,6 +2,7 @@
 
 ## 1.3.0 - 2026-07-08
 
+- Recommend installing this preset at the highest priority among all installed presets so its quality, reliability, traceability, release-readiness, and mandatory test-first governance takes precedence across the delivery workflow.
 - Replace "minimum non-duplicative" BDD/ATDD scenario generation with coverage-complete, non-duplicative scenario generation.
 - Replace per-story minimum TDD task wording with coverage-complete TDD inventory and task generation.
 - Add scenario granularity rules requiring BDD coverage for user-visible requirements, supported user-facing option classes, and edge/error conditions.

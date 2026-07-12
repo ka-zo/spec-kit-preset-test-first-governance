@@ -20,7 +20,13 @@ The preset strengthens the existing [GitHub Spec Kit](https://github.com/github/
 
 ## Requirements and Installation
 
-This preset requires GitHub Spec Kit `>=0.8.0`. It governs generated artifacts and agent instructions; it does not install the test runners or analysis tools selected during planning.
+This preset requires GitHub Spec Kit `>=0.12.11`. It governs generated artifacts and agent instructions; it does not install the test runners or analysis tools selected during planning.
+
+### Recommended priority
+
+Install this preset with a high priority—preferably the highest priority among all installed presets. Its purpose is to materially improve the quality, reliability, traceability, and release readiness of the generated implementation workflow. Because these concerns apply across the entire delivery process, its governance should take precedence over conflicting or weaker guidance from any lower-priority preset, not only presets focused on testing.
+
+The examples below use priority `5`. If any other installed preset has priority `5` or higher, assign this preset a higher supported value or lower the other preset's priority so that this preset remains the highest-priority preset. Review the resolved output whenever presets are added or reprioritized to confirm that their combined guidance remains compatible with this preset's mandatory test-first governance.
 
 After a release tag is published, install it directly with:
 
@@ -34,7 +40,7 @@ If the preset is available in your configured catalog:
 specify preset add test-first-governance --priority 5
 ```
 
-Priority `5` allows the preset's mandatory test-first rules to supersede lower-priority optional-test wording while remaining composable with other presets.
+Priority `5` is the recommended default: it allows the preset's mandatory test-first rules to supersede lower-priority optional-test wording while remaining composable with unrelated presets.
 
 ## Recommended Workflow
 
@@ -52,7 +58,7 @@ Priority `5` allows the preset's mandatory test-first rules to supersede lower-p
 
 This preset strengthens `constitution`, `specify`, `plan`, `checklist`, `tasks`, `analyze`, `implement`, and `converge`. It does not modify `clarify`; `clarify` is an optional but recommended step before planning.
 
-## Default Behavior And Overrides
+## Default Behavior and Overrides
 
 This preset does not define special CLI flags. Users guide it by adding normal text to the relevant Spec Kit command. The table below lists the main behaviors most users may want to tune; later commands may refine earlier defaults when the decision naturally becomes clearer.
 
